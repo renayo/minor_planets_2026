@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Minor Planets & Harmonic Patterning — Oshop & Coops 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Mono:wght@400;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;1,8..60,300;1,8..60,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #080c1e;
+  --surface: #0d1228;
+  --surface2: #111830;
+  --border: rgba(180,200,255,0.09);
+  --border2: rgba(180,200,255,0.16);
+  --text: #dde4f0;
+  --text-dim: #7a8faa;
+  --text-faint: #3f4f6a;
+  --gold: #d9b96a;
+  --gold-dim: rgba(217,185,106,0.18);
+  --cyan: #4acfe0;
+  --cyan-dim: rgba(74,207,224,0.14);
+  --pos: #5eca80;
+  --pos-dim: rgba(94,202,128,0.15);
+  --neg: #e06b6b;
+  --neg-dim: rgba(224,107,107,0.15);
+  --purple: #9b82e8;
+  --purple-dim: rgba(155,130,232,0.14);
+  --threshold: 0.103;
+  --ff-head: 'EB Garamond', Georgia, serif;
+  --ff-body: 'Source Serif 4', Georgia, serif;
+  --ff-mono: 'Space Mono', monospace;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--ff-body);
+  font-size: 17px;
+  line-height: 1.72;
+  overflow-x: hidden;
+}
+
+/* ─── SCROLLBAR ─── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: rgba(74,207,224,0.3); border-radius: 3px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(8,12,30,0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--border);
+  padding: 0 clamp(1rem,4vw,3rem);
+  display: flex; align-items: center; gap: 1.5rem;
+  height: 52px;
+  font-family: var(--ff-mono); font-size: 11px;
+}
+.nav-brand {
+  color: var(--gold); letter-spacing: 0.08em; text-transform: uppercase;
+  white-space: nowrap; font-weight: 700; flex-shrink: 0;
+}
+.nav-links {
+  display: flex; gap: clamp(0.6rem,1.5vw,1.2rem); flex-wrap: nowrap;
+  overflow-x: auto; scrollbar-width: none;
+}
+.nav-links a {
+  color: var(--text-dim); text-decoration: none; letter-spacing: 0.04em;
+  text-transform: uppercase; font-size: 10px; white-space: nowrap;
+  transition: color 0.2s;
+}
+.nav-links a:hover, .nav-links a.active { color: var(--cyan); }
+.nav-links a.active { position: relative; }
+.nav-links a.active::after {
+  content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+  height: 1px; background: var(--cyan);
+}
+.nav-spacer { flex: 1; }
+.nav-gh {
+  display: flex; align-items: center; gap: 6px; color: var(--text-dim);
+  text-decoration: none; font-size: 10px; letter-spacing: 0.04em;
+  text-transform: uppercase; transition: color 0.2s; flex-shrink: 0;
+}
+.nav-gh:hover { color: var(--gold); }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; min-height: 100vh; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; text-align: center;
+  padding: 80px clamp(1.5rem,6vw,5rem) 4rem;
+  overflow: hidden;
+}
+#starfield { position: absolute; inset: 0; z-index: 0; }
+.hero-inner { position: relative; z-index: 1; max-width: 820px; }
+.hero-tag {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--cyan);
+  background: var(--cyan-dim); border: 1px solid rgba(74,207,224,0.25);
+  padding: 4px 14px; border-radius: 2px; display: inline-block; margin-bottom: 2rem;
+}
+.hero h1 {
+  font-family: var(--ff-head); font-size: clamp(1.7rem, 4.5vw, 3.1rem);
+  font-weight: 400; line-height: 1.25; color: var(--text);
+  margin-bottom: 1.4rem; font-style: italic;
+}
+.hero h1 em { font-style: normal; color: var(--gold); }
+.hero-authors {
+  font-family: var(--ff-mono); font-size: 13px; color: var(--text-dim);
+  letter-spacing: 0.06em; margin-bottom: 0.4rem;
+}
+.hero-meta {
+  font-family: var(--ff-mono); font-size: 11px; color: var(--text-faint);
+  letter-spacing: 0.05em; margin-bottom: 3rem; text-transform: uppercase;
+}
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; margin-bottom: 2.5rem;
+}
+@media(max-width:600px){ .hero-stats { grid-template-columns: repeat(2,1fr); } }
+.stat-card {
+  background: var(--surface); padding: 1.2rem 1rem; text-align: center;
+}
+.stat-num {
+  font-family: var(--ff-mono); font-size: clamp(1.4rem,3vw,2rem);
+  font-weight: 700; color: var(--gold); display: block;
+}
+.stat-lbl {
+  font-size: 11px; color: var(--text-dim); text-transform: uppercase;
+  letter-spacing: 0.08em; font-family: var(--ff-mono);
+}
+.hero-ctas { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+.btn {
+  font-family: var(--ff-mono); font-size: 11px; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 10px 22px; border-radius: 2px;
+  text-decoration: none; cursor: pointer; transition: all 0.2s; border: none;
+}
+.btn-primary {
+  background: var(--cyan); color: var(--bg); font-weight: 700;
+}
+.btn-primary:hover { background: #6de0ed; }
+.btn-outline {
+  background: transparent; color: var(--text-dim);
+  border: 1px solid var(--border2);
+}
+.btn-outline:hover { color: var(--text); border-color: rgba(255,255,255,0.3); }
+
+/* ─── SCROLL INDICATOR ─── */
+.scroll-cue {
+  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+  z-index: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 6px; font-family: var(--ff-mono); font-size: 10px;
+  color: var(--text-faint); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.scroll-arrow { width: 1px; height: 40px; background: linear-gradient(to bottom, var(--text-faint), transparent); animation: scrollpulse 2s ease-in-out infinite; }
+@keyframes scrollpulse { 0%,100%{opacity:0.3;transform:scaleY(0.8)} 50%{opacity:1;transform:scaleY(1)} }
+
+/* ─── SECTIONS ─── */
+section { padding: clamp(3rem,7vw,5.5rem) clamp(1.5rem,6vw,5rem); max-width: 1100px; margin: 0 auto; }
+section + section { border-top: 1px solid var(--border); }
+.section-label {
+  font-family: var(--ff-mono); font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--cyan); margin-bottom: 0.8rem;
+}
+h2 {
+  font-family: var(--ff-head); font-size: clamp(1.5rem,3.5vw,2.2rem);
+  font-weight: 500; color: var(--text); line-height: 1.2; margin-bottom: 1.5rem;
+}
+h3 {
+  font-family: var(--ff-head); font-size: clamp(1.1rem,2.5vw,1.4rem);
+  font-weight: 500; color: var(--text); margin-bottom: 0.8rem; font-style: italic;
+}
+p { margin-bottom: 1.1rem; color: var(--text-dim); }
+p:last-child { margin-bottom: 0; }
+strong { color: var(--text); font-weight: 600; }
+
+/* ─── ABSTRACT ─── */
+.abstract-quote {
+  border-left: 3px solid var(--gold); padding: 1.5rem 2rem;
+  background: var(--gold-dim); border-radius: 0 4px 4px 0; margin: 1.5rem 0;
+  font-style: italic; color: var(--text); line-height: 1.8; font-size: 1.05rem;
+}
+.keywords { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.5rem; }
+.kw {
+  font-family: var(--ff-mono); font-size: 11px; padding: 4px 12px;
+  border: 1px solid var(--border2); border-radius: 2px; color: var(--text-dim);
+  letter-spacing: 0.04em; background: var(--surface2);
+}
+
+/* ─── TWO-COL GRID ─── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 2.5rem; align-items: start; }
+@media(max-width:700px){ .two-col { grid-template-columns: 1fr; } }
+.three-col { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; }
+@media(max-width:700px){ .three-col { grid-template-columns: 1fr 1fr; } }
+
+/* ─── FIGURES ─── */
+.fig-wrap {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden;
+}
+.fig-wrap img { width: 100%; display: block; }
+.fig-caption {
+  padding: 0.8rem 1rem; font-size: 12px; color: var(--text-dim);
+  font-style: italic; border-top: 1px solid var(--border); font-family: var(--ff-body);
+}
+.fig-caption strong { color: var(--text); font-style: normal; }
+
+/* ─── CHIPS ─── */
+.chip-grid { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.chip {
+  font-family: var(--ff-mono); font-size: 11px; padding: 5px 12px;
+  border: 1px solid var(--border2); border-radius: 2px; color: var(--text-dim);
+  letter-spacing: 0.04em; background: var(--surface2);
+}
+.chip.highlight { border-color: rgba(217,185,106,0.4); color: var(--gold); background: var(--gold-dim); }
+.chip.cyan { border-color: rgba(74,207,224,0.35); color: var(--cyan); background: var(--cyan-dim); }
+
+/* ─── INFO CARD ─── */
+.info-card {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 4px;
+  padding: 1.2rem 1.5rem; margin: 1rem 0;
+}
+.info-card-title {
+  font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.14em; color: var(--cyan); margin-bottom: 0.5rem;
+}
+
+/* ─── ACF EXPLORER ─── */
+.planet-grid {
+  display: grid; grid-template-columns: repeat(6,1fr); gap: 6px; margin-bottom: 1.5rem;
+}
+@media(max-width:600px){ .planet-grid { grid-template-columns: repeat(4,1fr); } }
+.planet-btn {
+  font-family: var(--ff-mono); font-size: 10px; padding: 8px 4px;
+  border: 1px solid var(--border2); border-radius: 3px; cursor: pointer;
+  background: var(--surface); color: var(--text-dim); text-align: center;
+  transition: all 0.18s; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.planet-btn:hover { border-color: rgba(255,255,255,0.3); color: var(--text); }
+.planet-btn.active { color: #fff; }
+
+.acf-stats-row {
+  display: grid; grid-template-columns: repeat(4,1fr); gap: 1px;
+  background: var(--border); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; margin-bottom: 1.5rem;
+}
+.acf-stat {
+  background: var(--surface); padding: 0.8rem 1rem; text-align: center;
+}
+.acf-stat-val {
+  font-family: var(--ff-mono); font-size: 1.1rem; font-weight: 700;
+  color: var(--gold); display: block;
+}
+.acf-stat-lbl {
+  font-size: 10px; color: var(--text-faint); text-transform: uppercase;
+  letter-spacing: 0.08em; font-family: var(--ff-mono);
+}
+.acf-viz-row {
+  display: grid; grid-template-columns: 1fr 1.2fr; gap: 1.5rem; align-items: start;
+}
+@media(max-width:750px){ .acf-viz-row { grid-template-columns: 1fr; } }
+#acfCanvas { width: 100%; border-radius: 4px; background: var(--surface); display: block; }
+.acf-img-wrap {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden; min-height: 200px; position: relative;
+}
+.acf-img-wrap img { width: 100%; display: block; }
+.acf-img-wrap .loading-msg {
+  position: absolute; inset: 0; display: flex; align-items: center;
+  justify-content: center; font-family: var(--ff-mono); font-size: 12px;
+  color: var(--text-faint); text-transform: uppercase; letter-spacing: 0.1em;
+}
+.view-toggle {
+  display: flex; gap: 6px; margin-bottom: 1rem;
+}
+.toggle-btn {
+  font-family: var(--ff-mono); font-size: 10px; padding: 6px 14px;
+  border: 1px solid var(--border2); border-radius: 2px; cursor: pointer;
+  background: var(--surface); color: var(--text-dim); text-transform: uppercase;
+  letter-spacing: 0.06em; transition: all 0.15s;
+}
+.toggle-btn.active, .toggle-btn:hover { background: var(--surface2); color: var(--text); }
+.toggle-btn.active { border-color: var(--cyan); color: var(--cyan); }
+.grid-view { display: none; }
+.grid-view.visible { display: block; }
+.single-view.hidden { display: none; }
+.grid-imgs { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+@media(max-width:600px){ .grid-imgs { grid-template-columns: 1fr; } }
+
+/* ─── TABLES ─── */
+.table-wrap {
+  overflow-x: auto; border: 1px solid var(--border); border-radius: 4px;
+  margin: 1.5rem 0;
+}
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+thead tr { background: var(--surface2); }
+th {
+  font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.1em; padding: 10px 14px; text-align: left;
+  color: var(--text-dim); border-bottom: 1px solid var(--border2); white-space: nowrap;
+}
+td {
+  font-family: var(--ff-mono); font-size: 12.5px; padding: 9px 14px;
+  border-bottom: 1px solid var(--border); color: var(--text-dim);
+  vertical-align: middle;
+}
+tr:last-child td { border-bottom: none; }
+tr:hover td { background: rgba(255,255,255,0.02); }
+td.name { color: var(--text); font-weight: 700; }
+td.val-pos { color: var(--pos); font-weight: 700; }
+td.val-neg { color: var(--neg); font-weight: 700; }
+td.val-neutral { color: var(--text-dim); }
+.bf-badge {
+  display: inline-block; padding: 2px 8px; border-radius: 2px; font-size: 11px;
+  font-weight: 700; font-family: var(--ff-mono);
+}
+.bf-extreme { background: rgba(155,130,232,0.25); color: var(--purple); }
+.bf-very-strong { background: rgba(74,207,224,0.2); color: var(--cyan); }
+.bf-strong { background: rgba(94,202,128,0.2); color: var(--pos); }
+.bf-moderate { background: rgba(217,185,106,0.2); color: var(--gold); }
+.bf-weak { background: rgba(255,255,255,0.06); color: var(--text-dim); }
+
+/* ─── V-TEST SECTION ─── */
+.finding-box {
+  background: var(--cyan-dim); border: 1px solid rgba(74,207,224,0.25);
+  border-radius: 4px; padding: 1.2rem 1.5rem; margin: 1.5rem 0;
+}
+.finding-box p { color: var(--text); margin-bottom: 0; }
+.finding-box strong { color: var(--cyan); }
+
+/* ─── OMNIBUS TABLE ─── */
+.omnibus-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1.5rem 0;
+}
+@media(max-width:600px){ .omnibus-grid { grid-template-columns: 1fr; } }
+.null-card {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  overflow: hidden;
+}
+.null-card-header {
+  background: var(--surface2); padding: 0.8rem 1rem; border-bottom: 1px solid var(--border);
+  font-family: var(--ff-mono); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--text);
+}
+.null-row {
+  padding: 0.6rem 1rem; border-bottom: 1px solid var(--border);
+  display: flex; justify-content: space-between; align-items: center; gap: 0.5rem;
+}
+.null-row:last-child { border-bottom: none; }
+.null-row-lbl { font-family: var(--ff-body); font-size: 13px; color: var(--text-dim); }
+.null-row-val { font-family: var(--ff-mono); font-size: 12px; color: var(--pos); font-weight: 700; text-align: right; }
+
+/* ─── PRIOR SENSITIVITY ─── */
+.prior-calc {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  padding: 1.5rem; margin: 1.5rem 0;
+}
+.prior-row { display: flex; gap: 2rem; align-items: start; flex-wrap: wrap; }
+.prior-input-col { flex: 1; min-width: 260px; }
+.prior-result-col { flex: 1; min-width: 220px; }
+.prior-label {
+  font-family: var(--ff-mono); font-size: 10px; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--text-dim); margin-bottom: 0.6rem; display: block;
+}
+.prior-slider-wrap { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+input[type=range] {
+  -webkit-appearance: none; width: 100%; height: 4px; border-radius: 2px;
+  background: var(--border2); outline: none; cursor: pointer;
+}
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%;
+  background: var(--cyan); cursor: pointer;
+}
+.prior-display {
+  font-family: var(--ff-mono); font-size: 1.3rem; font-weight: 700; color: var(--gold);
+  margin-bottom: 1rem;
+}
+.bf-presets { display: flex; flex-wrap: wrap; gap: 5px; }
+.bf-preset-btn {
+  font-family: var(--ff-mono); font-size: 10px; padding: 5px 10px;
+  border: 1px solid var(--border2); border-radius: 2px; cursor: pointer;
+  background: var(--surface2); color: var(--text-dim); transition: all 0.15s;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.bf-preset-btn:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+.bf-preset-btn.active { background: var(--gold-dim); border-color: rgba(217,185,106,0.45); color: var(--gold); }
+.posterior-display {
+  background: var(--surface2); border-radius: 4px; padding: 1.2rem; text-align: center;
+  border: 1px solid var(--border);
+}
+.posterior-val {
+  font-family: var(--ff-mono); font-size: 2.2rem; font-weight: 700; color: var(--cyan);
+  margin-bottom: 0.3rem;
+}
+.posterior-sub { font-family: var(--ff-mono); font-size: 10px; color: var(--text-dim); letter-spacing: 0.08em; text-transform: uppercase; }
+.posterior-bar-wrap {
+  height: 6px; background: var(--surface2); border-radius: 3px; margin-top: 1rem; overflow: hidden;
+}
+.posterior-bar {
+  height: 100%; background: linear-gradient(to right, var(--cyan), var(--pos));
+  border-radius: 3px; transition: width 0.5s ease;
+}
+.jeffreys-legend { display: flex; flex-direction: column; gap: 4px; margin-top: 1rem; }
+.jeff-row { display: flex; align-items: center; gap: 8px; font-family: var(--ff-mono); font-size: 10px; color: var(--text-dim); }
+.jeff-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.prior-interp {
+  font-family: var(--ff-body); font-size: 13px; color: var(--text-dim); margin-top: 0.8rem;
+  min-height: 40px; font-style: italic;
+}
+
+
+
+/* ─── DISCUSSION ─── */
+.limitations-list { list-style: none; margin: 0.8rem 0 1rem; }
+.limitations-list li {
+  padding: 0.5rem 0 0.5rem 1.5rem; position: relative;
+  color: var(--text-dim); border-bottom: 1px solid var(--border);
+}
+.limitations-list li:last-child { border-bottom: none; }
+.limitations-list li::before {
+  content: '—'; position: absolute; left: 0; color: var(--text-faint);
+  font-family: var(--ff-mono);
+}
+.conclusion-box {
+  background: linear-gradient(135deg, rgba(74,207,224,0.06), rgba(155,130,232,0.06));
+  border: 1px solid rgba(74,207,224,0.2); border-radius: 4px;
+  padding: 1.5rem 2rem; margin-top: 2rem;
+}
+.conclusion-box p { color: var(--text); }
+
+/* ─── CODE & DATA ─── */
+.file-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px;
+  margin: 1.5rem 0;
+}
+.file-item {
+  background: var(--surface2); border: 1px solid var(--border); border-radius: 3px;
+  padding: 8px 12px; display: flex; align-items: center; gap: 8px;
+  font-family: var(--ff-mono); font-size: 11px; color: var(--text-dim);
+  text-decoration: none; transition: all 0.15s;
+}
+.file-item:hover { color: var(--text); border-color: rgba(255,255,255,0.25); }
+.file-icon { color: var(--gold); flex-shrink: 0; font-size: 13px; }
+.file-icon.py { color: var(--cyan); }
+.file-icon.img { color: var(--pos); }
+.citation-block {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 4px;
+  padding: 1.2rem 1.5rem; margin-top: 2rem;
+  font-family: var(--ff-mono); font-size: 12px; color: var(--text-dim);
+  line-height: 1.8;
+}
+.citation-block strong { color: var(--text); }
+
+/* ─── REVEAL ANIMATION ─── */
+.reveal {
+  opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ─── FULL-WIDTH WRAPPER ─── */
+.full-width-section {
+  border-top: 1px solid var(--border);
+  padding: clamp(3rem,7vw,5.5rem) clamp(1.5rem,6vw,5rem);
+}
+.full-width-inner { max-width: 1100px; margin: 0 auto; }
+
+/* ─── DIVIDER ─── */
+.section-divider {
+  border: none; border-top: 1px solid var(--border); max-width: 1100px; margin: 0 auto;
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <span class="nav-brand">Oshop & Coops 2026</span>
+  <div class="nav-links">
+    <a href="#abstract">Abstract</a>
+    <a href="#dataset">Dataset</a>
+    <a href="#explorer">ACF Explorer</a>
+    <a href="#results">Results</a>
+    <a href="#vtest">V-Test</a>
+    <a href="#effects">Effect Size</a>
+    <a href="#omnibus">Omnibus</a>
+    <a href="#prior">Priors</a>
+    <a href="#discussion">Discussion</a>
+    <a href="#code">Code & Data</a>
+  </div>
+  <div class="nav-spacer"></div>
+  <a href="https://github.com/renayo/minor_planets_2026" target="_blank" class="nav-gh">
+    ⬡ GitHub
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="hero" id="hero">
+  <canvas id="starfield"></canvas>
+  <div class="hero-inner">
+    <div class="hero-tag">Research Article · 2026</div>
+    <h1>In daily news, <em>minor planet names</em><br>show up in accordance with harmonic patterning</h1>
+    <p class="hero-authors">Renay Oshop &amp; Anton Coops</p>
+    <p class="hero-meta">Under Submission &nbsp;·&nbsp; CC0 Data & Code &nbsp;·&nbsp; Google News · Google Ephemerides · Python</p>
+    <div class="hero-stats">
+      <div class="stat-card"><span class="stat-num">1,121</span><span class="stat-lbl">Named Minor Planets</span></div>
+      <div class="stat-card"><span class="stat-num">290</span><span class="stat-lbl">Days Observed</span></div>
+      <div class="stat-card"><span class="stat-num">12</span><span class="stat-lbl">Reference Points</span></div>
+      <div class="stat-card"><span class="stat-num">325,090</span><span class="stat-lbl">Observations</span></div>
+    </div>
+    <div class="hero-ctas">
+      <a href="https://github.com/renayo/minor_planets_2026" target="_blank" class="btn btn-primary">View Data & Code</a>
+      <a href="#abstract" class="btn btn-outline">Read the Paper</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="scroll-arrow"></div>Scroll</div>
+</div>
+
+<!-- ABSTRACT -->
+<section id="abstract" class="reveal">
+  <div class="section-label">Abstract</div>
+  <h2>A hermeneutics-free test of astrological structure</h2>
+  <blockquote class="abstract-quote">
+    Between February and December 2022, the proper names of 1,121 officially designated minor planets were tracked across Google News for 290 days, producing 325,090 paired observations linking orbital geometry to linguistic occurrence. Each minor planet's daily article count was sorted by its angular separation from twelve reference points. The resulting 360-degree waves were evaluated with the autocorrelation function at lags corresponding to harmonic aspects. Most reference points showed autocorrelation well beyond the white-noise expectation, showing <strong>positive correlation at smaller aspect separations</strong> and <strong>negative correlation at 120° and 180°</strong>. Omnibus tests combining all twelve points reached significance under two independent null models, with Bayes factors in the strong range.
+  </blockquote>
+  <div class="keywords">
+    <span class="kw">astrology</span>
+    <span class="kw">minor planets</span>
+    <span class="kw">autocorrelation function</span>
+    <span class="kw">harmonic aspects</span>
+    <span class="kw">language</span>
+    <span class="kw">solar system</span>
+    <span class="kw">Google News</span>
+    <span class="kw">Bayes factors</span>
+    <span class="kw">Monte Carlo</span>
+  </div>
+</section>
+
+<!-- DATASET -->
+<section id="dataset" class="reveal">
+  <div class="section-label">Dataset & Method</div>
+  <h2>Counting astronyms against celestial geometry</h2>
+  <p>Rather than asking what astrological meanings a minor planet <em>carries</em>, this study asks how often its proper name is literally used by journalists. Minor planet names are treated as morphological primitives — precisely defined, countable text strings. Under this approach, correct spelling outweighs contextual factors, making the test <strong>hermeneutics-free</strong>.</p>
+  
+  <div class="two-col reveal">
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/wave_types.jpg"
+             alt="Four wave types: simple, amplified, higher frequency, phase-shifted"
+             loading="lazy">
+        <div class="fig-caption"><strong>Figure 1.</strong> Four waves illustrating properties central to the analysis: amplitude, frequency, and phase. Each reference point is reduced to one wave; the study asks whether it has structure at the angles astrology sees as salient.</div>
+      </div>
+    </div>
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/planetary_degrees_feb15_2022_clockwise.png"
+             alt="Planetary degrees Feb 15 2022 clockwise diagram"
+             loading="lazy">
+        <div class="fig-caption"><strong>Figure 2.</strong> The angular-difference measurement. On 15 February 2022, the minor planet Tyson sat 150° ahead of the Sun. This basic separation was recorded for every body, every reference point, every day.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">12 Reference Points Evaluated</div>
+    <p style="font-size:13px;margin-bottom:0.8rem;color:var(--text-dim)">Article counts sorted by angular separation from each of these celestial reference points daily.</p>
+    <div class="chip-grid">
+      <span class="chip highlight">☀ Sun</span>
+      <span class="chip">☽ Moon</span>
+      <span class="chip">☿ Mercury</span>
+      <span class="chip">♀ Venus</span>
+      <span class="chip">♂ Mars</span>
+      <span class="chip">♃ Jupiter</span>
+      <span class="chip">♄ Saturn</span>
+      <span class="chip">⛢ Uranus</span>
+      <span class="chip">♆ Neptune</span>
+      <span class="chip">♇ Pluto</span>
+      <span class="chip highlight">★ Mesarthim</span>
+      <span class="chip cyan">☊ Rahu</span>
+    </div>
+  </div>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">11 Astrological Aspect Lags Tested</div>
+    <p style="font-size:13px;margin-bottom:0.8rem;color:var(--text-dim)">The conjunction at 0° is omitted (a wave is always perfectly correlated with itself at zero lag). White-noise threshold: ±1.96/√360 ≈ <strong style="color:var(--gold)">±0.103</strong></p>
+    <div class="chip-grid">
+      <span class="chip">24° Quindecile</span>
+      <span class="chip">30° Semi-sextile</span>
+      <span class="chip">36° Decile</span>
+      <span class="chip">40° Novile</span>
+      <span class="chip">45° Semi-square</span>
+      <span class="chip">51° Septile</span>
+      <span class="chip">60° Sextile</span>
+      <span class="chip">72° Quintile</span>
+      <span class="chip">90° Square</span>
+      <span class="chip">120° Trine</span>
+      <span class="chip">180° Opposition</span>
+    </div>
+  </div>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">Two Independent Null Models</div>
+    <div class="two-col" style="gap:1rem;margin-top:0.5rem;">
+      <div>
+        <strong>Compound Null</strong>
+        <p style="font-size:13px">Randomly reassigns article series to orbits and rotates each by a random angular offset — destroys any genuine name–orbit association while preserving the dataset's overall statistical structure. Guards against data-structure artefacts.</p>
+      </div>
+      <div>
+        <strong>Unnamed-MBA Null</strong>
+        <p style="font-size:13px">Draws on a separate pool of unnamed main-belt minor planets with comparable orbits whose alphanumerical identifiers carry no obvious astrological significance. Asks whether the signal is specific to <em>named</em> bodies. Guards against orbital geometry effects.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACF EXPLORER -->
+<section id="explorer" class="reveal">
+  <div class="section-label">Interactive</div>
+  <h2>ACF Planet Explorer</h2>
+  <p>Select a reference point to see its autocorrelation profile at seven representative astrological aspect lags. The <span style="color:var(--gold)">gold dashed line</span> marks the 95% white-noise threshold (±0.103). Bars <span style="color:var(--pos)">above threshold (green)</span> or <span style="color:var(--neg)">below (red)</span> indicate statistically significant structure.</p>
+
+  <div class="view-toggle">
+    <button class="toggle-btn active" id="btnSingle" onclick="setView('single')">Individual View</button>
+    <button class="toggle-btn" id="btnGrid" onclick="setView('grid')">Grid: Linear</button>
+    <button class="toggle-btn" id="btnGridP" onclick="setView('gridpolar')">Grid: Polar</button>
+  </div>
+
+  <div class="single-view" id="singleView">
+    <div class="planet-grid" id="planetGrid"></div>
+    <div class="acf-stats-row" id="acfStatsRow">
+      <div class="acf-stat"><span class="acf-stat-val" id="statK">—</span><span class="acf-stat-lbl">Lags above CI (K)</span></div>
+      <div class="acf-stat"><span class="acf-stat-val" id="statJ">—</span><span class="acf-stat-lbl">Joint Σ ACF²</span></div>
+      <div class="acf-stat"><span class="acf-stat-val" id="statQ">—</span><span class="acf-stat-lbl">Ljung-Box Q</span></div>
+      <div class="acf-stat"><span class="acf-stat-val" id="statBF">—</span><span class="acf-stat-lbl">Bayes Factor</span></div>
+    </div>
+    <div class="acf-viz-row">
+      <canvas id="acfCanvas" width="480" height="300"></canvas>
+      <div class="acf-img-wrap" id="acfImgWrap">
+        <div class="loading-msg">Select a reference point</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="grid-view" id="gridView">
+    <div class="grid-imgs">
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/acf_grid_linear.png" alt="ACF grid linear" loading="lazy">
+        <div class="fig-caption"><strong>Figure 5 (grid).</strong> Linear ACF plots for all 12 reference points.</div>
+      </div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/acf_grid_polar.png" alt="ACF grid polar" loading="lazy">
+        <div class="fig-caption"><strong>Figure 5 (polar grid).</strong> Polar form ACF plots for all 12 reference points.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS TABLES -->
+<section id="results" class="reveal">
+  <div class="section-label">Results</div>
+  <h2>Per-reference-point autocorrelation summary</h2>
+  <p>Almost all reference points crossed the white-noise threshold at more than one aspect lag. Mesarthim, Uranus, Neptune, Pluto, and Rahu each exceeded it at <strong>nine of eleven lags</strong>. The Moon crossed it at none — a significant internal negative control.</p>
+
+  <h3>Table 1 — Autocorrelation summary, all reference points</h3>
+  <p style="font-size:13px;color:var(--text-dim)">K = lags above 95% white-noise CI; BF tested against compound null. Sorted by Bayes factor.</p>
+  <div class="table-wrap">
+    <table id="table1"></table>
+  </div>
+
+  <h3>Table 2 — ACF values at seven representative aspect lags</h3>
+  <p style="font-size:13px;color:var(--text-dim)">Values in <strong style="color:var(--pos)">green</strong> or <strong style="color:var(--neg)">red</strong> exceed ±0.103 (95% white-noise threshold). Recurring pattern: positive at small aspects, near zero at 90°, negative at 120° and 180°.</p>
+  <div class="table-wrap">
+    <table id="table2"></table>
+  </div>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">The Shape of the Aspect Pattern</div>
+    <p>Positive autocorrelation at small separations (24°–60°) paired with negative autocorrelation at 120° and 180° means the wave behaves in <strong>opposite ways at small and large separations</strong>. The aspects are structurally organised into a pattern: minor aspects clustered constructively, major hard aspects set against them. A single significant lag could be a frequency fluke, whereas a consistent positive-then-negative arc across eleven lags and twelve reference points is harder to attribute to chance.</p>
+  </div>
+</section>
+
+<!-- V-TEST -->
+<section id="vtest" class="reveal">
+  <div class="section-label">Directional Analysis</div>
+  <h2>V-Test: where news attention concentrates</h2>
+  <p>The V-test (Rayleigh test for circular concentration toward a specified direction) was evaluated at every integer degree from 0° to 359°, producing a complete map of where news attention concentrates around the 360-degree circle.</p>
+  <div class="two-col reveal">
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/cmp_vtest_polar_plot.png" alt="Compound null V-test polar plot" loading="lazy">
+        <div class="fig-caption"><strong>Figure 3.</strong> Compound null. Left: omnibus p-value at each degree. Right: Bayes factor. Red dashed ring = BF 30 (very strong); amber ring = BF 10 (strong).</div>
+      </div>
+    </div>
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/mba_vtest_polar_plot.png" alt="Unnamed-MBA null V-test polar plot" loading="lazy">
+        <div class="fig-caption"><strong>Figure 4.</strong> Unnamed-asteroid null — the decisive panel. Clearly bipolar with prominent BF lobes along the conjunction–opposition axis, peaking near <strong>BF ≈ 60 at direction 12°</strong>.</div>
+      </div>
+    </div>
+  </div>
+  <div class="finding-box reveal">
+    <p>Figure 4 is the <strong>headline result</strong> of the directional analysis. When the geometry of unnamed comparably-orbited minor planets is differenced out, what remains in named-body data is an axial concentration of news mass at <strong>conjunction and opposition</strong> — the very axis that astrology most consistently treats as salient. The unnamed-asteroid null exceeds BF = 30 across most of this axis and reaches BF ≈ 60 near 12°.</p>
+  </div>
+</section>
+
+<!-- EFFECT SIZE -->
+<section id="effects" class="reveal">
+  <div class="section-label">Effect Size</div>
+  <h2>How large is the signal?</h2>
+  <p>Significance tests show whether an effect exists; effect sizes show how large. The per-lag ACF values are already standardised effects bounded by ±1. The catalogue-wide RMS autocorrelation is <strong style="color:var(--gold)">0.162</strong> (small by Cohen's conventions), rising to ~0.22 for the strongest points.</p>
+  <div class="two-col reveal">
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/effect_size_dotplot.png" alt="Effect size dotplot" loading="lazy">
+        <div class="fig-caption"><strong>Figure 6.</strong> Standardised effect d vs. null standard deviations above chance. Filled markers = compound null; open markers = unnamed-asteroid null. Connecting lines show attenuation between the two nulls.</div>
+      </div>
+    </div>
+    <div>
+      <div class="info-card">
+        <div class="info-card-title">Key Effect Size Findings</div>
+        <p style="font-size:14px"><strong>Absolute scale:</strong> Omnibus RMS ACF = 0.162 (small). Strongest individual points (Mesarthim 0.223, Pluto 0.213, Neptune 0.210) qualify as small effects by Cohen's conventions — though this understates the signal by averaging in near-zero lags.</p>
+        <p style="font-size:14px"><strong>Standardised scale:</strong> Mesarthim, Pluto, and Neptune exceed <strong>four null standard deviations</strong> against the compound null (nearly five for Mesarthim). The combined statistic sits 3.3 SDs above the compound null.</p>
+        <p style="font-size:14px"><strong>Named vs. unnamed contrast:</strong> The unnamed-MBA null is a named-versus-unnamed contrast. The effect attenuates but does not collapse. The combined statistic falls from 3.28 to 2.39 SDs, leaving roughly <strong>three-quarters specific to named bodies</strong>. Venus and Mars fall to the unnamed baseline — their departures reflect shared geometry, not names.</p>
+        <p style="font-size:14px;margin-bottom:0"><strong>Negative control:</strong> The Moon sits below the null under both models — a reference point expected to carry no aspect structure, and carrying none.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFIC / MALEFIC -->
+<section id="benefic" class="reveal">
+  <div class="section-label">Astrological Classification</div>
+  <h2>Benefic and malefic bodies</h2>
+  <p>Does the aspect signal differ between astrology's classical benefics (Jupiter, Venus) and malefics (Saturn, Mars)? The analysis plots the benefic-minus-malefic variance-share differential at each aspect.</p>
+  <div class="two-col reveal">
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/benefic_malefic_diverging.png" alt="Benefic/malefic diverging bar chart" loading="lazy">
+        <div class="fig-caption"><strong>Figure 9.</strong> Variance-share differential (benefic − malefic) by aspect. Positive bars indicate aspects where Jupiter/Venus carry larger signal share; negative bars where Saturn/Mars do.</div>
+      </div>
+    </div>
+    <div>
+      <div class="fig-wrap">
+        <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/heatmap_acf_norm_by_joint_all_grouped.png" alt="ACF heatmap normalized by joint, all grouped" loading="lazy">
+        <div class="fig-caption">Normalized ACF heatmap grouped by reference point category. Benefics weight different aspects than malefics.</div>
+      </div>
+    </div>
+  </div>
+  <div class="info-card reveal">
+    <div class="info-card-title">Interpretation</div>
+    <p>Both groups place most of their signal at small separations, but the balance differs: <strong>benefics weight the decile, novile, semi-square, and septile</strong>, while <strong>malefics concentrate at the quindecile and strikingly the trine</strong>. With only four planets the contrast is suggestive rather than conclusive, but it shows the aspect signal is not uniform across bodies — consistent with the astrological premise that different bodies behave differently.</p>
+    <p style="margin-bottom:0">Read astrologically: trines from malefics tend to push a namesake more into the news, perhaps for unfortunate reasons. Malefic planets at benefic aspects increase news of a namesake, as do benefic planets at malefic aspects.</p>
+  </div>
+</section>
+
+<!-- OMNIBUS -->
+<section id="omnibus" class="reveal">
+  <div class="section-label">Omnibus Significance</div>
+  <h2>Combining all twelve reference points</h2>
+  <p>More telling than any single analysis are the omnibus tests, which combine all twelve reference points and account for the structure they share. Monte Carlo simulation over 10,000 iterations.</p>
+  <p><em>Note: Fisher and Stouffer combinations assume reference points are independent — an assumption the data do not strictly meet. The Monte Carlo SUM-T / MAX-T aggregates are the more honest headline.</em></p>
+
+  <div class="omnibus-grid reveal" id="omnibusGrid"></div>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">A Note on the Unnamed-MBA Null</div>
+    <p>The unnamed-MBA null produced weaker, though still significant, results than the compound null. This suggests that part of the apparent effect may be attributable to orbital geometry shared by any minor planet rather than to its name. The effect does not collapse under this stricter control, but it does slightly diminish — consistent with a real residual specific to named bodies.</p>
+  </div>
+</section>
+
+<!-- PRIOR SENSITIVITY -->
+<section id="prior" class="reveal">
+  <div class="section-label">Bayesian Inference</div>
+  <h2>Prior sensitivity calculator</h2>
+  <p>Bayes factors of this magnitude need to be read alongside their priors before they translate into posterior beliefs. The hypothesis tested is deliberately narrow: that there exists a non-null statistical regularity linking minor-planet angular separations to Google News article frequencies — not that astrology as a tradition is correct.</p>
+
+  <div class="prior-calc reveal">
+    <div class="prior-row">
+      <div class="prior-input-col">
+        <span class="prior-label">Prior probability P(H₁)</span>
+        <div class="prior-slider-wrap">
+          <input type="range" id="priorSlider" min="-9" max="-0.3" step="0.01" value="-1">
+          <div class="prior-display" id="priorDisplay">0.100</div>
+        </div>
+        <span class="prior-label">Bayes Factor — select observed value</span>
+        <div class="bf-presets" id="bfPresets"></div>
+        <div class="jeffreys-legend">
+          <div class="jeff-row"><div class="jeff-dot" style="background:var(--purple)"></div><span>BF ≥ 100 — Extreme evidence</span></div>
+          <div class="jeff-row"><div class="jeff-dot" style="background:var(--cyan)"></div><span>BF 30–100 — Very strong</span></div>
+          <div class="jeff-row"><div class="jeff-dot" style="background:var(--pos)"></div><span>BF 10–30 — Strong</span></div>
+          <div class="jeff-row"><div class="jeff-dot" style="background:var(--gold)"></div><span>BF 3–10 — Moderate</span></div>
+          <div class="jeff-row"><div class="jeff-dot" style="background:var(--text-faint)"></div><span>BF 1–3 — Anecdotal</span></div>
+        </div>
+      </div>
+      <div class="prior-result-col">
+        <span class="prior-label">Posterior probability P(H₁ | data)</span>
+        <div class="posterior-display">
+          <div class="posterior-val" id="posteriorVal">—</div>
+          <div class="posterior-sub" id="posteriorSub">Select a BF to compute</div>
+        </div>
+        <div class="posterior-bar-wrap"><div class="posterior-bar" id="posteriorBar" style="width:0%"></div></div>
+        <div class="prior-interp" id="priorInterp"></div>
+      </div>
+    </div>
+  </div>
+
+  <h3>Table 4 — Prior sensitivity at key Bayes factors</h3>
+  <p style="font-size:13px;color:var(--text-dim)">P(H₁ | data) = (P(H₁) × BF) / (P(H₁) × BF + (1 − P(H₁)))</p>
+  <div class="table-wrap">
+    <table id="table4"></table>
+  </div>
+</section>
+
+
+
+<!-- DISCUSSION -->
+<section id="discussion" class="reveal">
+  <div class="section-label">Discussion & Conclusion</div>
+  <h2>What the evidence supports</h2>
+  <p>The autocorrelation analysis provides genuine omnibus significance under two independent null models, with Bayes factors in the moderate-to-strong range on the Jeffreys scale. The news presence of minor planet names is not randomly related to where the bodies sit in the sky; the structure concentrates at the angular separations that traditional astrology privileges, and it does so in a coherent way: <strong>positive among the minor aspects, negative for trine and opposition</strong>.</p>
+  <p>The eleven aspect lags were not chosen after looking at the autocorrelation function — they were defined two thousand years before the data existed. The same applies to the twelve reference points: the Sun, the Moon, the planets, Mesarthim, and Rahu constitute a standard astrological set rather than a subset selected for effect.</p>
+
+  <div class="info-card reveal">
+    <div class="info-card-title">Mesarthim — The Unexpected Leader</div>
+    <p>Mesarthim (γ Arietis — the fixed star at approximately 9° sidereal Aries, thousands of years ago the First Point of Aries) produced the strongest signal of all twelve reference points: K=9, BF≈91 against the compound null. This suggests that named minor planets may be responding most strongly to approximately 9° sidereal Aries and other fixed stars (i.e., constellations) — consistent with the possibility that minor planets act astrologically much like classical planets.</p>
+    <p style="margin-bottom:0">The outer planets Saturn, Uranus, Neptune, and Pluto follow Mesarthim closely — plausibly because they too were virtually fixed during the 290 days of the study, changing by just a handful of degrees or fewer, and so are almost a simple phase-shift from Mesarthim.</p>
+  </div>
+
+  <h3>Limitations</h3>
+  <ul class="limitations-list">
+    <li>With 325,090 observations, some structure will arise by chance. The omnibus tests are designed to handle this, but the risk of over-interpretation is real.</li>
+    <li>The data come from a single source, Google News, which chiefly reflects English-language Western media. The findings cannot be generalised to human culture at large.</li>
+    <li>The weaker performance under the unnamed-asteroid null implies that orbital geometry accounts for some (small) part of the signal.</li>
+    <li>The Moon's null result may reflect its swift daily motion 'blurring' the 360-bin angular wave.</li>
+  </ul>
+
+  <div class="conclusion-box reveal">
+    <h3 style="font-style:normal;margin-bottom:0.8rem;">Conclusion</h3>
+    <p>Across 1,121 minor planets and 325,090 observations, the answer to whether a named celestial body's position relates to how often its name appears in the news is a qualified <em>yes</em>. The autocorrelation structure is statistically significant under two independent null models and is organised by the harmonic angles long central to astrological thought. The mechanism remains unexplained, the effect is small, and the limitations are openly stated. What this study offers is not a vindication of astrology but <strong>a carefully measured anomaly</strong>, with the full data, code, and figures needed to confirm or refute it.</p>
+  </div>
+</section>
+
+<!-- CODE & DATA -->
+<section id="code" class="reveal">
+  <div class="section-label">Open Science</div>
+  <h2>Data & code repository</h2>
+  <p>All data, analysis scripts, and figures are publicly available under a <strong>CC0 license</strong> (public domain). The repository contains everything needed to replicate, extend, or refute this study.</p>
+
+  <h3>Analysis Scripts</h3>
+  <div class="file-grid">
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_significance.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>acf_significance.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_plots_all_sps.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>acf_plots_all_sps.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_effect_size.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>acf_effect_size.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/all%20v%20test.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>all v test.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/effet_size_plot.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>effet_size_plot.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/heatmap_acf_normalized_by_joint.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>heatmap_acf_normalized_by_joint.py</a>
+
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/plot_circular_vtest.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>plot_circular_vtest.py</a>
+  </div>
+
+  <h3>Data Files</h3>
+  <div class="file-grid">
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_all_sps.csv" target="_blank" class="file-item"><span class="file-icon">📄</span>acf_all_sps.csv</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_significance_results.csv" target="_blank" class="file-item"><span class="file-icon">📄</span>acf_significance_results.csv</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/MinorPlanetSunData.csv" target="_blank" class="file-item"><span class="file-icon">📄</span>MinorPlanetSunData.csv</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/acf_effect_size_results.csv" target="_blank" class="file-item"><span class="file-icon">📄</span>acf_effect_size_results.csv</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/prior_sensitivity_table.csv" target="_blank" class="file-item"><span class="file-icon">📄</span>prior_sensitivity_table.csv</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/HOW%20TO%20REPLICATE.md" target="_blank" class="file-item"><span class="file-icon">📋</span>HOW TO REPLICATE.md</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/ACF%20Analysis.md" target="_blank" class="file-item"><span class="file-icon">📋</span>ACF Analysis.md</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/Effect%20Size.md" target="_blank" class="file-item"><span class="file-icon">📋</span>Effect Size.md</a>
+  </div>
+
+  <div class="citation-block">
+    <div class="info-card-title" style="margin-bottom:0.8rem;">Suggested Citation</div>
+    <strong>Oshop, R., & Coops, A. (2026).</strong> In daily news, minor planet names show up in accordance with harmonic patterning. <em>Manuscript under submission.</em><br><br>
+    <strong>Data & Code:</strong> Oshop, R., & Coops, A. (2026). Minor planet orbits and astronyms in the news [Data set and code]. GitHub. <a href="https://github.com/renayo/minor_planets_2026" target="_blank" style="color:var(--cyan);text-decoration:none">https://github.com/renayo/minor_planets_2026</a><br><br>
+    <span style="color:var(--text-faint)">This dataset is released under CC0 1.0 Universal (public domain). Reproduction, remixing, and replication are explicitly encouraged.</span>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<div style="border-top:1px solid var(--border);padding:1.5rem clamp(1.5rem,6vw,5rem);text-align:center;font-family:var(--ff-mono);font-size:11px;color:var(--text-faint);letter-spacing:0.06em;">
+  Oshop & Coops 2026 &nbsp;·&nbsp; CC0 Data & Code &nbsp;·&nbsp;
+  <a href="https://github.com/renayo/minor_planets_2026" target="_blank" style="color:var(--text-dim);text-decoration:none;">github.com/renayo/minor_planets_2026</a>
+</div>
+
+<script>
+// ─── DATA ───────────────────────────────────────────────────────────────────
+const PLANETS = [
+  { id:'mesarthim', label:'★ Mesarthim', color:'#e8c97a', K:9, joint:0.546, Q:267.2, BF:90.9 },
+  { id:'sun',       label:'☀ Sun',       color:'#f0a830', K:6, joint:0.153, Q:73.3,  BF:6.9  },
+  { id:'moon',      label:'☽ Moon',      color:'#c0cee0', K:0, joint:0.026, Q:11.8,  BF:0.7  },
+  { id:'mercury',   label:'☿ Mercury',   color:'#9d8fd4', K:4, joint:0.095, Q:47.5,  BF:7.0  },
+  { id:'venus',     label:'♀ Venus',     color:'#e8a89a', K:2, joint:0.058, Q:26.3,  BF:2.5  },
+  { id:'mars',      label:'♂ Mars',      color:'#d96058', K:4, joint:0.136, Q:57.1,  BF:2.2  },
+  { id:'jupiter',   label:'♃ Jupiter',   color:'#c8a870', K:7, joint:0.317, Q:159.2, BF:14.9 },
+  { id:'saturn',    label:'♄ Saturn',    color:'#7eb8d0', K:8, joint:0.383, Q:174.2, BF:21.4 },
+  { id:'uranus',    label:'⛢ Uranus',    color:'#58c0cc', K:9, joint:0.390, Q:191.5, BF:23.7 },
+  { id:'neptune',   label:'♆ Neptune',   color:'#5890cc', K:9, joint:0.486, Q:223.8, BF:45.9 },
+  { id:'pluto',     label:'♇ Pluto',     color:'#9478c8', K:9, joint:0.499, Q:244.8, BF:69.4 },
+  { id:'rahu',      label:'☊ Rahu',      color:'#8c5080', K:9, joint:0.386, Q:168.6, BF:10.9 },
+];
+// ACF values at 7 lags: [24, 30, 36, 60, 90, 120, 180]
+const ACF_VALUES = {
+  mesarthim: [ 0.295,  0.326,  0.269,  0.166, -0.017, -0.175, -0.365],
+  sun:       [ 0.103,  0.145,  0.175, -0.044, -0.036, -0.108, -0.172],
+  moon:      [ 0.005, -0.008, -0.064,  0.058,  0.053,  0.065,  0.022],
+  mercury:   [ 0.084,  0.104,  0.119, -0.014, -0.036,  0.039, -0.163],
+  venus:     [ 0.110,  0.071,  0.119,  0.030, -0.033, -0.089, -0.071],
+  mars:      [ 0.217,  0.175,  0.129,  0.072, -0.034, -0.147, -0.013],
+  jupiter:   [ 0.181,  0.215,  0.211,  0.087, -0.028, -0.063, -0.309],
+  saturn:    [ 0.238,  0.250,  0.300,  0.209, -0.003, -0.153, -0.223],
+  uranus:    [ 0.235,  0.275,  0.240,  0.106, -0.080, -0.120, -0.315],
+  neptune:   [ 0.284,  0.301,  0.242,  0.218, -0.007, -0.231, -0.249],
+  pluto:     [ 0.306,  0.272,  0.229,  0.223, -0.028, -0.198, -0.341],
+  rahu:      [ 0.279,  0.292,  0.263,  0.125, -0.058, -0.136, -0.184],
+};
+const LAGS = [24, 30, 36, 60, 90, 120, 180];
+const LAG_NAMES = ['24°\nQuindecile', '30°\nSemi-sextile', '36°\nDecile', '60°\nSextile', '90°\nSquare', '120°\nTrine', '180°\nOpposition'];
+const THRESHOLD = 0.103;
+const GITHUB_RAW = 'https://raw.githubusercontent.com/renayo/minor_planets_2026/main/';
+
+// ─── STARFIELD ───────────────────────────────────────────────────────────────
+(function() {
+  const canvas = document.getElementById('starfield');
+  const ctx = canvas.getContext('2d');
+  let stars = [];
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  function initStars() {
+    stars = [];
+    const n = Math.floor((canvas.width * canvas.height) / 3200);
+    for (let i = 0; i < n; i++) {
+      stars.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: Math.random() * 1.4 + 0.2,
+        alpha: Math.random() * 0.7 + 0.1,
+        speed: Math.random() * 0.003 + 0.001,
+        phase: Math.random() * Math.PI * 2
+      });
+    }
+  }
+  let t = 0;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    t += 0.008;
+    for (const s of stars) {
+      const a = s.alpha * (0.5 + 0.5 * Math.sin(t * s.speed * 60 + s.phase));
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(200,220,255,${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  window.addEventListener('resize', () => { resize(); initStars(); });
+  resize(); initStars(); draw();
+})();
+
+// ─── BUILD PLANET BUTTONS ────────────────────────────────────────────────────
+let activePlanet = null;
+function buildPlanetGrid() {
+  const grid = document.getElementById('planetGrid');
+  PLANETS.forEach(p => {
+    const btn = document.createElement('button');
+    btn.className = 'planet-btn';
+    btn.textContent = p.label;
+    btn.id = 'pbtn-' + p.id;
+    btn.onclick = () => selectPlanet(p.id);
+    grid.appendChild(btn);
+  });
+}
+
+function selectPlanet(id) {
+  activePlanet = id;
+  // Update button states
+  PLANETS.forEach(p => {
+    const btn = document.getElementById('pbtn-' + p.id);
+    btn.classList.toggle('active', p.id === id);
+    if (p.id === id) {
+      btn.style.background = p.color + '33';
+      btn.style.borderColor = p.color + '88';
+      btn.style.color = p.color;
+    } else {
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  });
+  // Update stats
+  const p = PLANETS.find(x => x.id === id);
+  document.getElementById('statK').textContent = p.K + '/11';
+  document.getElementById('statJ').textContent = p.joint.toFixed(3);
+  document.getElementById('statQ').textContent = p.Q.toFixed(1);
+  document.getElementById('statBF').textContent = p.BF.toFixed(1);
+  // Draw chart
+  drawACFChart(id, p.color);
+  // Load image
+  loadACFImage(id);
+}
+
+function drawACFChart(id, color) {
+  const canvas = document.getElementById('acfCanvas');
+  const ctx = canvas.getContext('2d');
+  const W = canvas.width, H = canvas.height;
+  const pad = { top: 28, bottom: 52, left: 44, right: 16 };
+  const cw = W - pad.left - pad.right;
+  const ch = H - pad.top - pad.bottom;
+  const vals = ACF_VALUES[id];
+  ctx.clearRect(0, 0, W, H);
+
+  // Background
+  ctx.fillStyle = '#0d1228';
+  ctx.fillRect(0, 0, W, H);
+
+  // Grid
+  const yMin = -0.45, yMax = 0.45;
+  function yp(v) { return pad.top + ch * (1 - (v - yMin) / (yMax - yMin)); }
+  const barW = Math.floor(cw / LAGS.length * 0.6);
+  const barGap = Math.floor(cw / LAGS.length);
+
+  // Zero line
+  ctx.beginPath();
+  ctx.moveTo(pad.left, yp(0));
+  ctx.lineTo(pad.left + cw, yp(0));
+  ctx.strokeStyle = 'rgba(180,200,255,0.15)';
+  ctx.lineWidth = 1;
+  ctx.stroke();
+
+  // Horizontal grid lines
+  [-0.3, -0.2, -0.1, 0.1, 0.2, 0.3, 0.4].forEach(g => {
+    ctx.beginPath();
+    ctx.moveTo(pad.left, yp(g));
+    ctx.lineTo(pad.left + cw, yp(g));
+    ctx.strokeStyle = 'rgba(180,200,255,0.05)';
+    ctx.lineWidth = 1;
+    ctx.setLineDash([4, 4]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+    ctx.fillStyle = 'rgba(120,140,180,0.5)';
+    ctx.font = '9px monospace';
+    ctx.textAlign = 'right';
+    ctx.fillText(g.toFixed(1), pad.left - 4, yp(g) + 3);
+  });
+
+  // Threshold lines
+  [THRESHOLD, -THRESHOLD].forEach(t => {
+    ctx.beginPath();
+    ctx.moveTo(pad.left, yp(t));
+    ctx.lineTo(pad.left + cw, yp(t));
+    ctx.strokeStyle = 'rgba(217,185,106,0.7)';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([6, 3]);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  });
+  // Threshold label
+  ctx.fillStyle = 'rgba(217,185,106,0.7)';
+  ctx.font = '9px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText('±0.103', pad.left + 2, yp(THRESHOLD) - 4);
+
+  // Bars
+  vals.forEach((v, i) => {
+    const cx = pad.left + barGap * i + barGap / 2;
+    const isAbove = Math.abs(v) > THRESHOLD;
+    let barColor;
+    if (!isAbove) { barColor = 'rgba(120,140,180,0.35)'; }
+    else if (v > 0) { barColor = '#5eca80'; }
+    else { barColor = '#e06b6b'; }
+
+    const y0 = yp(0), y1 = yp(v);
+    ctx.fillStyle = barColor;
+    if (v >= 0) {
+      ctx.fillRect(cx - barW/2, y1, barW, y0 - y1);
+    } else {
+      ctx.fillRect(cx - barW/2, y0, barW, y1 - y0);
+    }
+    // Value label
+    ctx.fillStyle = isAbove ? '#e8e4d8' : 'rgba(120,140,180,0.6)';
+    ctx.font = `${isAbove ? 'bold' : ''} 10px monospace`;
+    ctx.textAlign = 'center';
+    const labelY = v >= 0 ? y1 - 4 : y1 + 12;
+    ctx.fillText(v.toFixed(3), cx, labelY);
+    // X label (lag degrees)
+    ctx.fillStyle = 'rgba(120,140,180,0.6)';
+    ctx.font = '9px monospace';
+    ctx.fillText(LAGS[i] + '°', cx, H - pad.bottom + 13);
+    // Aspect name
+    ctx.fillStyle = 'rgba(100,120,160,0.5)';
+    ctx.font = '8px monospace';
+    ctx.fillText(LAG_NAMES[i].split('\n')[1], cx, H - pad.bottom + 24);
+  });
+
+  // Title
+  const pdata = PLANETS.find(x => x.id === id);
+  ctx.fillStyle = color;
+  ctx.font = 'bold 12px monospace';
+  ctx.textAlign = 'left';
+  ctx.fillText(pdata.label + ' — ACF at astrological lags', pad.left, 17);
+}
+
+function loadACFImage(id) {
+  const wrap = document.getElementById('acfImgWrap');
+  wrap.innerHTML = '<div class="loading-msg">Loading...</div>';
+  const img = new Image();
+  const url = GITHUB_RAW + 'acf_' + id + '.png';
+  img.onload = () => {
+    wrap.innerHTML = '';
+    wrap.appendChild(img);
+    const cap = document.createElement('div');
+    cap.className = 'fig-caption';
+    cap.innerHTML = `Full ACF plot (0°–360°) for <strong>${PLANETS.find(x=>x.id===id).label}</strong> from the repository.`;
+    wrap.appendChild(cap);
+  };
+  img.onerror = () => { wrap.innerHTML = '<div class="loading-msg">Image not available</div>'; };
+  img.style.cssText = 'width:100%;display:block;';
+  img.alt = 'ACF plot for ' + id;
+  img.src = url;
+}
+
+// ─── VIEW TOGGLE ─────────────────────────────────────────────────────────────
+function setView(mode) {
+  const singleView = document.getElementById('singleView');
+  const gridView   = document.getElementById('gridView');
+  document.getElementById('btnSingle').classList.toggle('active', mode === 'single');
+  document.getElementById('btnGrid').classList.toggle('active', mode === 'grid');
+  document.getElementById('btnGridP').classList.toggle('active', mode === 'gridpolar');
+  if (mode === 'single') {
+    singleView.style.display = '';
+    gridView.style.display = 'none';
+  } else if (mode === 'grid') {
+    singleView.style.display = 'none';
+    gridView.style.display = '';
+    gridView.innerHTML = `<div class="grid-imgs">
+      <div class="fig-wrap">
+        <img src="${GITHUB_RAW}acf_grid_linear.png" alt="ACF grid linear" style="width:100%;display:block;" loading="lazy">
+        <div class="fig-caption"><strong>Figure 5 (linear grid).</strong> ACF plots for all 12 reference points, linear form.</div>
+      </div></div>`;
+  } else {
+    singleView.style.display = 'none';
+    gridView.style.display = '';
+    gridView.innerHTML = `<div class="grid-imgs">
+      <div class="fig-wrap">
+        <img src="${GITHUB_RAW}acf_grid_polar.png" alt="ACF grid polar" style="width:100%;display:block;" loading="lazy">
+        <div class="fig-caption"><strong>Figure 5 (polar grid).</strong> ACF plots for all 12 reference points, polar form.</div>
+      </div></div>`;
+  }
+}
+
+// ─── TABLE 1 ──────────────────────────────────────────────────────────────────
+function buildTable1() {
+  const sorted = [...PLANETS].sort((a,b) => b.BF - a.BF);
+  const t = document.getElementById('table1');
+  t.innerHTML = `<thead><tr>
+    <th>Reference Point</th><th>Lags above CI (K)</th><th>Joint Σ ACF²</th>
+    <th>Ljung-Box Q</th><th>Bayes Factor</th>
+  </tr></thead>`;
+  const tb = document.createElement('tbody');
+  sorted.forEach(p => {
+    const bfClass = p.BF >= 30 ? 'bf-very-strong' : p.BF >= 10 ? 'bf-strong' : p.BF >= 3 ? 'bf-moderate' : 'bf-weak';
+    const kColor = p.K >= 8 ? 'var(--cyan)' : p.K >= 5 ? 'var(--pos)' : p.K >= 2 ? 'var(--gold)' : 'var(--text-dim)';
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+      <td class="name" style="color:${p.color}">${p.label}</td>
+      <td style="color:${kColor};font-weight:${p.K>=7?'700':'400'}">${p.K}/11</td>
+      <td>${p.joint.toFixed(3)}</td>
+      <td>${p.Q.toFixed(1)}</td>
+      <td><span class="bf-badge ${bfClass}">${p.BF.toFixed(1)}</span></td>
+    `;
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+}
+
+// ─── TABLE 2 ──────────────────────────────────────────────────────────────────
+function buildTable2() {
+  const t = document.getElementById('table2');
+  const lagLabels = ['24°', '30°', '36°', '60°', '90°', '120°', '180°'];
+  const lagSub    = ['Quindecile','Semi-sx','Decile','Sextile','Square','Trine','Opposition'];
+  t.innerHTML = `<thead><tr>
+    <th>Reference</th>
+    ${lagLabels.map((l,i)=>`<th>${l}<br><span style="color:var(--text-faint);font-size:9px">${lagSub[i]}</span></th>`).join('')}
+  </tr></thead>`;
+  const tb = document.createElement('tbody');
+  PLANETS.forEach(p => {
+    const vals = ACF_VALUES[p.id];
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="name" style="color:${p.color}">${p.label}</td>` +
+      vals.map(v => {
+        const ab = Math.abs(v) > THRESHOLD;
+        const cls = ab ? (v > 0 ? 'val-pos' : 'val-neg') : 'val-neutral';
+        const fw = ab ? 'bold' : 'normal';
+        return `<td class="${cls}" style="font-weight:${fw}">${v >= 0 ? '+' : ''}${v.toFixed(3)}</td>`;
+      }).join('');
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+}
+
+// ─── OMNIBUS GRID ─────────────────────────────────────────────────────────────
+function buildOmnibus() {
+  const omni = document.getElementById('omnibusGrid');
+  const data = {
+    compound: [
+      { lbl: 'Sum of lags above threshold',   val: 'p = .026, BF = 19' },
+      { lbl: 'Sum of joint squared ACF',       val: 'p = .019, BF = 26' },
+      { lbl: 'Sum of Ljung–Box Q',             val: 'p = .019, BF = 27' },
+      { lbl: 'Maximum Ljung–Box Q',            val: 'p = .016, BF = 32' },
+      { lbl: 'Fisher combination of Q',        val: 'p ≈ 1 × 10⁻⁶', note:'assumes independence' },
+      { lbl: 'Stouffer combination of Q',      val: 'Z = +5.15, p ≈ 1 × 10⁻⁷', note:'assumes independence' },
+    ],
+    mba: [
+      { lbl: 'Sum of lags above threshold',   val: 'p = .040, BF = 12' },
+      { lbl: 'Sum of joint squared ACF',       val: 'p = .035, BF = 14' },
+      { lbl: 'Sum of Ljung–Box Q',             val: 'p = .037, BF = 14' },
+      { lbl: 'Maximum Ljung–Box Q',            val: 'p = .034, BF = 15' },
+      { lbl: 'Fisher combination of Q',        val: 'p ≈ 5 × 10⁻⁵', note:'assumes independence' },
+      { lbl: 'Stouffer combination of Q',      val: 'Z = +4.38, p ≈ 6 × 10⁻⁶', note:'assumes independence' },
+    ]
+  };
+  ['compound','mba'].forEach(null_model => {
+    const card = document.createElement('div');
+    card.className = 'null-card';
+    card.innerHTML = `<div class="null-card-header">${null_model === 'compound' ? '🔵 Compound Null (Monte Carlo)' : '🟣 Unnamed-MBA Null (Monte Carlo)'}</div>`;
+    data[null_model].forEach(row => {
+      const rowEl = document.createElement('div');
+      rowEl.className = 'null-row';
+      const isNote = row.note;
+      rowEl.innerHTML = `
+        <span class="null-row-lbl">${row.lbl}${isNote ? `<br><span style="font-size:11px;color:var(--text-faint)">* ${row.note}</span>` : ''}</span>
+        <span class="null-row-val" style="color:${isNote?'var(--text-dim)':'var(--pos)'}">${row.val}</span>
+      `;
+      card.appendChild(rowEl);
+    });
+    omni.appendChild(card);
+  });
+}
+
+// ─── TABLE 4 (PRIOR SENSITIVITY) ─────────────────────────────────────────────
+function buildTable4() {
+  const priors = [0.5, 0.1, 0.05, 0.01, 1e-3, 1e-4, 1e-6];
+  const bfs = [3, 10, 30, 100, 192];
+  const bflabels = ['BF = 3', 'BF = 10', 'BF = 30', 'BF = 100', 'BF = 192'];
+  const priorLabels = ['0.5 — flat', '0.1 — mild skeptic', '0.05 — moderate skeptic', '0.01 — strong skeptic', '10⁻³ — very strong skeptic', '10⁻⁴ — extraordinary claim', '10⁻⁶ — telepathy prior'];
+  const t = document.getElementById('table4');
+  t.innerHTML = `<thead><tr><th>Prior P(H₁)</th>${bflabels.map(l=>`<th>${l}</th>`).join('')}</tr></thead>`;
+  const tb = document.createElement('tbody');
+  priors.forEach((prior, pi) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `<td class="name">${priorLabels[pi]}</td>` +
+      bfs.map(bf => {
+        const post = (prior * bf) / (prior * bf + (1 - prior));
+        let color = 'var(--text-dim)';
+        if (post > 0.9) color = 'var(--cyan)';
+        else if (post > 0.7) color = 'var(--pos)';
+        else if (post > 0.4) color = 'var(--gold)';
+        return `<td style="color:${color}">${post < 0.001 ? post.toExponential(1) : post.toFixed(3)}</td>`;
+      }).join('');
+    tb.appendChild(tr);
+  });
+  t.appendChild(tb);
+}
+
+// ─── PRIOR SENSITIVITY CALCULATOR ────────────────────────────────────────────
+const BF_PRESETS = [
+  { label:'BF 3', val:3, note:'moderate' },
+  { label:'BF 10', val:10, note:'strong' },
+  { label:'BF 11', val:10.9, note:'Rahu' },
+  { label:'BF 15', val:14.9, note:'Jupiter' },
+  { label:'BF 21', val:21.4, note:'Saturn' },
+  { label:'BF 24', val:23.7, note:'Uranus' },
+  { label:'BF 27', val:27, note:'omnibus' },
+  { label:'BF 32', val:32, note:'max omni' },
+  { label:'BF 46', val:45.9, note:'Neptune' },
+  { label:'BF 69', val:69.4, note:'Pluto' },
+  { label:'BF 91', val:90.9, note:'Mesarthim' },
+];
+let selectedBF = null;
+function buildPriorCalc() {
+  const container = document.getElementById('bfPresets');
+  BF_PRESETS.forEach(bf => {
+    const btn = document.createElement('button');
+    btn.className = 'bf-preset-btn';
+    btn.id = 'bfbtn-' + bf.val;
+    btn.innerHTML = `${bf.label}<br><span style="color:var(--text-faint);font-size:9px">${bf.note}</span>`;
+    btn.onclick = () => { selectedBF = bf.val; updateBFButtons(); updatePosterior(); };
+    container.appendChild(btn);
+  });
+  document.getElementById('priorSlider').addEventListener('input', function() {
+    updatePriorDisplay(); updatePosterior();
+  });
+  updatePriorDisplay();
+}
+function updateBFButtons() {
+  BF_PRESETS.forEach(bf => {
+    const btn = document.getElementById('bfbtn-' + bf.val);
+    if (btn) btn.classList.toggle('active', bf.val === selectedBF);
+  });
+}
+function getPrior() {
+  const v = parseFloat(document.getElementById('priorSlider').value);
+  return Math.pow(10, v);
+}
+function updatePriorDisplay() {
+  const prior = getPrior();
+  const el = document.getElementById('priorDisplay');
+  if (prior >= 0.01) { el.textContent = prior.toFixed(3); }
+  else { el.textContent = prior.toExponential(1); }
+}
+function updatePosterior() {
+  if (!selectedBF) {
+    document.getElementById('posteriorVal').textContent = '—';
+    document.getElementById('posteriorSub').textContent = 'Select a BF to compute';
+    document.getElementById('priorInterp').textContent = '';
+    document.getElementById('posteriorBar').style.width = '0%';
+    return;
+  }
+  const prior = getPrior();
+  const post = (prior * selectedBF) / (prior * selectedBF + (1 - prior));
+  document.getElementById('posteriorVal').textContent = post < 0.001 ? post.toExponential(2) : post.toFixed(4);
+  const pct = Math.round(post * 100);
+  document.getElementById('posteriorSub').textContent = `P(H₁ | data) with BF = ${selectedBF.toFixed(1)}`;
+  document.getElementById('posteriorBar').style.width = pct + '%';
+  let interp;
+  if (prior >= 0.1) { interp = 'With a moderate or open prior, the evidence is essentially decisive.'; }
+  else if (prior >= 0.01) { interp = 'In the moderate skepticism range, the Bayes factors move posteriors meaningfully.'; }
+  else if (prior >= 1e-4) { interp = 'At strong skepticism, the evidence is present but the prior still does significant work.'; }
+  else { interp = 'At this level of prior skepticism, even strong Bayes factors cannot overturn the prior. The question of what prior is appropriate does most of the inferential work.'; }
+  document.getElementById('priorInterp').textContent = interp;
+}
+
+// ─── NAV ACTIVE LINK ──────────────────────────────────────────────────────────
+function updateActiveNav() {
+  const sections = ['hero','abstract','dataset','explorer','results','vtest','effects','benefic','omnibus','prior','discussion','code'];
+  let current = '';
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (el) {
+      const rect = el.getBoundingClientRect();
+      if (rect.top <= 80) current = id;
+    }
+  }
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href').replace('#','');
+    a.classList.toggle('active', href === current);
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+
+// ─── SCROLL REVEAL ────────────────────────────────────────────────────────────
+function initReveal() {
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.07, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+}
+
+// ─── INIT ──────────────────────────────────────────────────────────────────────
+buildPlanetGrid();
+buildTable1();
+buildTable2();
+buildOmnibus();
+buildTable4();
+buildPriorCalc();
+initReveal();
+
+// Auto-select Mesarthim
+setTimeout(() => selectPlanet('mesarthim'), 300);
+</script>
+</body>
+</html>
