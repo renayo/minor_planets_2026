@@ -20,7 +20,7 @@ Twelve reference points are evaluated:
 3. **Moon** — lunar tropical longitude.
 4. **Mercury** through **Pluto** — geocentric tropical longitudes of the
    seven classical and modern planets (5 through 10).
-5. **Rahu** — *new in this revision*: the mean north lunar node. A
+5. **Rahu**: the mean north lunar node. A
    mathematical point central to Vedic astrology, computed from the
    standard Meeus polynomial for the mean longitude of the ascending node
    (Astronomical Algorithms, Chapter 47).
