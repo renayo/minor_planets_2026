@@ -5,7 +5,7 @@ Both are null hypotheses used to test whether the "named planet ↔ news article
 ## Compound null
 **A synthetic null built by shuffling the real data**, combining two permutations:
 
-1. **Cross-planet swap** — randomly reassign which article series belongs to which planet's orbital trajectory. (Mars's articles get attached to Pallas's orbit, Ceres's articles to Juno's orbit, etc.)
+1. **Cross-planet swap** — randomly reassign which article series belongs to which planet's orbital trajectory. (Tyson's articles get attached to Pallas's orbit, Ceres's articles to Juno's orbit, etc.)
 2. **Per-planet phase shift** — additionally rotate each planet's article series by a random angular offset, breaking any residual angular registration.
 
 Applying both together destroys any genuine name↔orbit correlation while preserving:
