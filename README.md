@@ -1,7 +1,7 @@
 # Minor planet orbits and astronyms in the news
 
 This repository contains the full analysis pipeline, data, and figures for
-Oshop & Coops, *Minor Planet Orbits and Astronyms in the News* (2026).
+Oshop & Coops, *In daily news, minor planet names show up in accordance with harmonic patterning* (2026).
 
 The study tracks the proper names of 1,121 officially designated minor
 planets across Google News for 290 consecutive days in 2022, then asks
