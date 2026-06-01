@@ -41,10 +41,7 @@ python3 all_sps_vs_gauquelin_extracted.py   # Figures 7-8 Gauquelin overlay
 python3 heatmap_acf_normalized_by_joint.py  # benefic/malefic heatmaps
 ```
 
-The Monte Carlo iteration count was set to **5,000** for this revision
-(was 10,000 in the cosmic_semiotics predecessor); the qualitative results
-are unchanged, but Bayes factors quoted in the paper round to slightly
-different values at this resolution.
+The Monte Carlo iteration count was set to **5,000**.
 
 ## Paper
 
