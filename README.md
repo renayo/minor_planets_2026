@@ -48,6 +48,4 @@ different values at this resolution.
 
 ## Paper
 
-The current draft is `Oshop_Coops_minor_planets_2026.docx`. Tables 1-4
-and Figures 3-6, 8 reflect the 12-reference-point analysis with Rahu
-included. Figure 5 now has twelve sub-panels (a-l), with Rahu as 5(l).
+Under submission.
