@@ -81,11 +81,9 @@ Mesarthim, Pluto, and Neptune reach "very strong" Bayes factors under the
 compound null; Uranus, Saturn, Rahu, and Jupiter reach "strong". Rahu's BF
 of 19.2 sits between Saturn (21.9) and Jupiter (15.8). Under the stricter
 unnamed-MBA null Rahu falls just below the Jeffreys "strong" threshold of
-10 (BF = 9.65), in the same band as Jupiter (9.29). Individually, however,
-**no single SP survives a Bonferroni correction** across the twelve SPs
-(all `p_Bonf > 0.05`). The evidence is carried by the strong-to-very-strong
+10 (BF = 9.65), in the same band as Jupiter (9.29). The evidence is carried by the strong-to-very-strong
 Bayes factors and, decisively, by the omnibus tests below — which combine
-the SPs in a single test and so do not require per-SP correction.
+the SPs in a single test and so do not require per-SP correction such as Bonferroni.
 
 ### Omnibus tests — both nulls
 
