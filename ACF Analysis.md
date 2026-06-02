@@ -36,7 +36,7 @@ Threshold: the 95% white-noise CI for an `N = 360` wave is `±1.96/√360 ≈ 0.
 | Pluto     | **9**                   | 0.499        | 244.8 | + at 24–72°, − at 120°, 180°        |
 | Neptune   | **9**                   | 0.486        | 223.8 | + at 24–60°, − at 120°, 180°        |
 | Uranus    | **9**                   | 0.390        | 191.5 | + at 24–60°, − at 120°, 180°        |
-| **Rahu**  | **9**                   | 0.386        | 168.6 | + at 24–60°, − at 120°, 180°        |
+| Rahu  | **9**                   | 0.386        | 168.6 | + at 24–60°, − at 120°, 180°        |
 | Saturn    | **8**                   | 0.383        | 174.2 | + at 24–60°, − at 120°, 180°        |
 | Jupiter   | 7                       | 0.317        | 159.2 | + at 24–51°, − at 180°              |
 | Sun       | 6                       | 0.153        |  73.3 | + at 30–51°, − at 120°, 180°        |
@@ -52,9 +52,8 @@ sits between Uranus (0.390) and Saturn (0.383), and its Ljung–Box Q (168.6)
 sits between Saturn (174.2) and Jupiter (159.2). The qualitative ACF profile
 is consistent with the slow-moving outer-body cluster: positive correlation at
 the small aspects (24°–60°), near zero at the square (90°), negative at the
-trine and opposition (120°, 180°). This profile is unsurprising in retrospect:
-Rahu moves retrograde at about 0.05° per day, so over the 290-day window it
-traverses only ~15° of ecliptic, behaving geometrically much like the slow
+trine and opposition (120°, 180°). Over the 290-day window Rahu 
+traverses only ~15° of ecliptic, behaving geometrically more like Jupiter and Saturn than the slow
 outer planets.
 
 ### Per-SP significance — Ljung–Box Q
@@ -70,7 +69,7 @@ scale.
 | Neptune   | 223.8 | 0.0102       | **49.0**      | 0.0272          | 18.4             |
 | Uranus    | 191.5 | 0.0206       | 24.3          | 0.0402          | 12.4             |
 | Saturn    | 174.2 | 0.0228       | 21.9          | 0.0446          | 11.2             |
-| **Rahu**  | 168.6 | 0.0260       | **19.2**      | 0.0518          | 9.65             |
+| Rahu  | 168.6 | 0.0260       | **19.2**      | 0.0518          | 9.65             |
 | Jupiter   | 159.2 | 0.0316       | 15.8          | 0.0538          | 9.29             |
 | Sun       |  73.3 | 0.0694       | 7.20          | 0.0902          | 5.54             |
 | Mars      |  57.1 | 0.2292       | 2.18          | 0.3088          | 1.62             |
