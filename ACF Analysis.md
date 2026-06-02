@@ -202,8 +202,7 @@ names.
 
 ### Why Bonferroni correction should not be used
 
-The per-SP results include a Bonferroni-corrected column (`p_Bonf`), and on
-that column no single SP reaches significance. That is expected and is *not*
+The per-SP results do not include a Bonferroni-corrected column (`p_Bonf`), ans that is expected and is *not*
 the relevant test: Bonferroni controls the family-wise error rate across
 twelve separate per-SP tests, whereas the hypothesis here is about the twelve
 SPs *jointly*. The omnibus tests (Fisher, Stouffer, MC SUM-T / MAX-T) bypass
