@@ -119,9 +119,6 @@
   }
   td.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr.highlight td { background: rgba(160,107,46,0.06); }
-  tr.row-rahu td:first-child::before {
-    content: "★ "; color: var(--accent-3);
-  }
   tr.row-rahu td:first-child { font-weight: 600; color: var(--accent-3); }
   .table-cap {
     color: var(--text-faint); font-size: 0.83rem; line-height: 1.5;
@@ -551,9 +548,8 @@
   <p>
     Per-reference-point Ljung–Box Q restricted to the eleven astrological
     lags, tested against each null model (5,000 Monte-Carlo iterations
-    per null, seed 42). Bayes factors are on the Jeffreys scale. Rahu's
-    row (★) sits between Saturn and Jupiter in both compound and
-    unnamed-MBA columns.
+    per null, seed 42). Bayes factors are on the Jeffreys scale. Rahu's row sits between
+    Saturn and Jupiter in both compound and unnamed-MBA columns.
   </p>
   <div class="table-wrap">
     <table>
@@ -612,21 +608,6 @@
       <tbody id="table2Body"></tbody>
     </table>
   </div>
-
-  <div style="margin-top: 28px;">
-    <h3>Figure 5(l) · Rahu's autocorrelation profile</h3>
-    <div class="fig-wrap">
-      <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/acf_rahu.png" alt="Rahu ACF profile" loading="lazy">
-      <div class="fig-caption">
-        Rahu's biased circular autocorrelation at every lag from 0 to 359 degrees.
-        Solid coloured bars at the eleven astrological aspect lags; bars exceeding
-        the dashed 95% white-noise CI of ±0.103 are coloured by sign. Nine of
-        eleven aspect lags clear the threshold (red at 24°-60°, blue at 120°-180°),
-        with the qualitative shape mirroring the slow-mover cluster (Mesarthim,
-        Uranus, Neptune, Pluto).
-      </div>
-    </div>
-  </div>
 </section>
 
 <section id="effects" class="reveal">
@@ -658,7 +639,7 @@
     is <em>d</em> against the unnamed-MBA null. Mars and Venus, weak
     under both nulls, fall essentially to the unnamed baseline; the
     Moon stays below the null under both — an internal negative control.
-    Rahu (★) sits between Uranus and Saturn under both nulls, with a
+    Rahu sits between Uranus and Saturn under both nulls, with a
     retention ratio (d_MBA / d_cmp) of 0.73 — indistinguishable from
     the 0.71-0.81 range seen across the other strong-signal SPs.
   </div>
@@ -680,26 +661,30 @@
 </section>
 
 <section id="benefic" class="reveal">
-  <div class="section-label">Heatmap</div>
-  <h2>Autocorrelation by traditional grouping</h2>
+  <div class="section-label">Benefics vs malefics</div>
+  <h2>The classical benefic–malefic contrast</h2>
   <p>
-    The same ACF data, regrouped by traditional astrological category
-    (benefics, malefics, luminaries, neutral, modern, Vedic lunar node)
-    and normalised within each row. Bright cells indicate lags where the
-    reference point's autocorrelation is a larger fraction of its joint
-    sum. Rahu, placed in its own "Lunar Node (Vedic)" group at the
-    bottom of the figure, shows the same broad pattern as the modern
-    outer planets: small aspects positive, opposition strongly negative.
+    Traditional astrology divides the visible planets into benefics
+    (Jupiter, Venus) and malefics (Saturn, Mars). If that distinction
+    carries any signature in the autocorrelation profile, it should appear
+    as a systematic difference between the two groups at the harmonic lags.
+    The diverging-bar plot below shows, for each aspect lag, the difference
+    between the mean benefic ACF and the mean malefic ACF: positive bars
+    are aspects where the benefics carry more of their joint signal than
+    the malefics; negative bars are the reverse.
   </p>
   <div class="fig-wrap">
-    <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/heatmap_acf_norm_by_joint_benefics_vs_malefics.png" alt="Benefic vs malefic ACF heatmap" loading="lazy">
+    <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/benefic_malefic_diverging.png" alt="Benefic vs malefic diverging-bar plot" loading="lazy">
     <div class="fig-caption">
-      Heatmap of biased circular ACF normalised by each row's joint Σ ACF².
-      Twelve reference points grouped by traditional categorisation, columns
-      are the 360 lag bins with vertical guides at the principal aspect lags.
-      The classical benefic-malefic contrast does not appear as a clear axis
-      in the data — the dominant axis is body speed (slow movers vs. fast
-      movers), not benefic vs. malefic.
+      Per-aspect difference (mean benefic ACF − mean malefic ACF) normalised
+      by each row's joint Σ ACF². Positive bars indicate aspects where the
+      benefic pair (Jupiter, Venus) carries a larger share of its joint
+      signal than the malefic pair (Saturn, Mars); negative bars indicate
+      the reverse. The classical benefic–malefic distinction does not appear
+      as a clear axis in the data — the differences are modest and
+      inconsistent in sign across the eleven astrological lags. The dominant
+      axis in the catalogue is body speed (slow movers vs. fast movers),
+      not benefic vs. malefic.
     </div>
   </div>
 </section>
@@ -793,7 +778,12 @@
           The observed curve extends well beyond the null envelope at
           directions clustered around 0°/180° (conjunction-opposition
           axis) for the slow-mover cluster, and around 60°/120° for
-          Rahu.
+          Rahu. Note that this is a different, much weaker, but
+          significant angle than for the unnamed-asteroid set as null
+          (see Figure 4). This is sensical: the compound null dataset
+          retains the structure of the real test data, but it has been
+          shifted — so the directions at which the two nulls find
+          residual concentration are not expected to coincide.
         </div>
       </div>
     </div>
@@ -1216,7 +1206,7 @@ function buildEffectBars() {
     const negWidthPct = isNeg ? Math.min(100, (Math.abs(sp.d_cmp) / maxD) * 100) : 0;
     const cls = sp.key === 'rahu' ? 'rahu' : (isNeg ? 'neg' : '');
     row.innerHTML = `
-      <span class="bar-label">${sp.key === 'rahu' ? '★ ' : ''}<strong>${sp.name}</strong></span>
+      <span class="bar-label"><strong>${sp.name}</strong></span>
       <div class="bar-track">
         ${isNeg
           ? `<div class="bar-fill neg" style="width: ${negWidthPct}%;"></div>`
