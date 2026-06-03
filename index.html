@@ -120,6 +120,7 @@
   td.num { text-align: right; font-variant-numeric: tabular-nums; }
   tr.highlight td { background: rgba(160,107,46,0.06); }
   tr.row-rahu td:first-child { font-weight: 600; color: var(--accent-3); }
+  tr.row-gc td:first-child { font-weight: 600; color: #0f5f3f; }
   .table-cap {
     color: var(--text-faint); font-size: 0.83rem; line-height: 1.5;
     margin-top: 10px; font-style: italic;
@@ -174,6 +175,8 @@
   .planet-btn .symbol { display: block; font-size: 1.6rem; line-height: 1; margin-bottom: 4px; }
   .planet-btn.rahu { border-color: rgba(110,58,130,0.30); }
   .planet-btn.rahu.selected { border-color: var(--accent-3); background: rgba(110,58,130,0.08); color: var(--accent-3); }
+  .planet-btn.gc   { border-color: rgba(15,95,63,0.30); }
+  .planet-btn.gc.selected   { border-color: #0f5f3f; background: rgba(15,95,63,0.08); color: #0f5f3f; }
 
   /* Explorer */
   .explorer-panel {
@@ -357,6 +360,7 @@
     <a href="#explorer">Explorer</a>
     <a href="#results">Per-SP</a>
     <a href="#effects">Effect</a>
+    <a href="#speed-vs-q">Speed</a>
     <a href="#omnibus">Omnibus</a>
     <a href="#prior">Prior</a>
     <a href="#code">Code</a>
@@ -374,7 +378,7 @@
   <p class="lede">
     Across 290 consecutive days of Google News coverage in 2022, the
     1,121 officially-named minor planets show statistically structured
-    correlation with twelve reference points at the harmonic angles
+    correlation with thirteen reference points at the harmonic angles
     long treated as salient in astrological tradition. The signal is
     significant under both a phase-shift null and a stricter
     unnamed-asteroid null, and approximately three-quarters of it is
@@ -385,7 +389,7 @@
     <div class="stat"><div class="stat-val">290</div><div class="stat-lbl">Consecutive days</div></div>
     <div class="stat"><div class="stat-val">12</div><div class="stat-lbl">Reference points</div></div>
     <div class="stat"><div class="stat-val">2</div><div class="stat-lbl">Independent null models</div></div>
-    <div class="stat"><div class="stat-val">BF&nbsp;25</div><div class="stat-lbl">Compound omnibus</div></div>
+    <div class="stat"><div class="stat-val">BF&nbsp;27</div><div class="stat-lbl">Compound omnibus</div></div>
     <div class="stat"><div class="stat-val">BF&nbsp;13</div><div class="stat-lbl">Unnamed-MBA omnibus</div></div>
   </div>
 </section>
@@ -397,7 +401,7 @@
     For each named minor planet, the daily count of Google News articles
     containing the planet's proper name was logged across 290 consecutive
     days in 2022. Those counts were paired with the daily angular
-    separation between the planet and each of <strong>twelve</strong>
+    separation between the planet and each of <strong>thirteen</strong>
     reference points: the Sun, the Moon, Mercury through Pluto, the
     fixed star FPOA (γ Arietis, the First Point of Aries), and
     <span class="pill">new this revision</span> the mean north lunar
@@ -409,23 +413,23 @@
     and shape comparison with the Gauquelin diurnal sectors.
   </p>
   <p>
-    The autocorrelation test combining all twelve reference points
+    The autocorrelation test combining all thirteen reference points
     reaches significance under both null models. Under the
     <strong>compound (phase-shift) null</strong> the joint ACF² statistic
     sits 3.3 standard deviations above the null mean, with
-    Monte-Carlo <em>p</em> ≈ 0.020 and Bayes factor ≈ 25. Under the
+    Monte-Carlo <em>p</em> ≈ 0.019 and Bayes factor ≈ 27. Under the
     stricter <strong>unnamed main-belt asteroid (MBA) null</strong>
     the effect attenuates by about 27% but does not collapse:
     <em>p</em> ≈ 0.040, BF ≈ 13. The signal is carried mostly by
-    FPOA, Pluto, Neptune, Uranus, Saturn, Rahu, and Jupiter;
+    FPOA, Pluto, Neptune, the Galactic Centre, Uranus, Saturn, Rahu, and Jupiter;
     the Moon, with a negative standardised effect, serves as an
     internal negative control.
   </p>
   <p>
-    The result is small in absolute correlation (RMS |ACF| ≈ 0.16,
+    The result is small in absolute correlation (RMS |ACF| ≈ 0.17,
     "small" by Cohen's scale) but coherent: the same
     positive-at-small-aspects, negative-at-large-aspects shape repeats
-    across eleven lags and nine of twelve reference points, and a small
+    across eleven lags and nine of thirteen reference points, and a small
     pattern repeated that many times lands far out in a tight null
     distribution. The Rahu finding — that a mathematical point with no
     physical body behaves geometrically like the slow named outer planets
@@ -446,7 +450,7 @@
     overlapping coverage effects across closely-spaced reference points.
   </p>
   <p>
-    <strong>Twelve reference points</strong> are evaluated:
+    <strong>Thirteen reference points</strong> are evaluated:
   </p>
   <div class="table-wrap">
     <table>
@@ -457,8 +461,9 @@
         <tr><td>Luminaries</td><td>Sun, Moon</td><td>JPL Horizons tropical longitudes</td></tr>
         <tr><td>Classical planets</td><td>Mercury, Venus, Mars, Jupiter, Saturn</td><td>JPL Horizons tropical longitudes</td></tr>
         <tr><td>Modern planets</td><td>Uranus, Neptune, Pluto</td><td>JPL Horizons tropical longitudes</td></tr>
-        <tr><td>Fixed reference</td><td>FPOA</td><td>First Point of Aries — the vernal equinox at 0° Aries tropical; mean longitude 0.50° during the 290-day window (Sun-relative encoding recovers the absolute value to within 0.02° across the dataset).</td></tr>
+        <tr><td>Fixed reference</td><td>FPOA</td><td>First Point of Aries — the vernal equinox at 0° Aries tropical; mean longitude 0.50° during the 290-day window (Sun-relative encoding recovers the absolute value to within 0.02° across the dataset). Note: earlier versions of this analysis labelled this reference point "Mesarthim" (γ Arietis), but the data series is anchored at the vernal equinox itself, not at the fixed star γ Arietis (which now sits at ~33.5° tropical, in early Taurus). The labelling has been corrected for accuracy.</td></tr>
         <tr class="row-rahu"><td>Lunar node (Vedic)</td><td>Rahu</td><td>Mean north node, Meeus polynomial (Astronomical Algorithms, Ch. 47)</td></tr>
+        <tr class="row-gc"><td>Galactic centre</td><td>GalCenter</td><td>Sagittarius A*, the supermassive black hole at the centre of our galaxy. Tropical longitude ~267° (≈27° Sagittarius) in 2022; essentially fixed at the precession rate (~10⁻⁵°/day), behaviour in the analysis matches the FPOA's "fixed reference" regime.</td></tr>
       </tbody>
     </table>
   </div>
@@ -575,7 +580,7 @@
     <span class="bf-band bf-a">anecdotal / weak</span>.
     FPOA, Pluto, Neptune reach "very strong" under the compound
     null; Uranus, Saturn, Rahu, Jupiter reach "strong". No single SP
-    survives a Bonferroni correction across the twelve tests; the
+    survives a Bonferroni correction across the thirteen tests; the
     evidence is carried by the omnibus aggregates below, which do not
     require per-SP correction.
   </div>
@@ -651,12 +656,60 @@
       <div class="fig-caption">
         Per-reference-point standardised effect d against both null models,
         with one-sided significance thresholds at d = 1.645, 2.326, 3.090
-        marked. Twelve rows including Rahu; Moon's negative d under both
-        nulls (an internal negative control) is visible at the bottom. The
-        omnibus row uses diamond markers to distinguish the aggregate
-        statistic from per-point d values.
+        marked. Thirteen rows including Rahu and the Galactic Centre; Moon's
+        negative d under both nulls (an internal negative control) is
+        visible at the bottom. The omnibus row uses diamond markers to
+        distinguish the aggregate statistic from per-point d values.
       </div>
     </div>
+  </div>
+</section>
+
+<section id="speed-vs-q" class="reveal">
+  <div class="section-label">Diagnostic</div>
+  <h2>The dominant axis in the catalogue is body speed</h2>
+  <p>
+    Across the eleven moving reference points (the planets, the Sun, the
+    Moon, and Rahu), the per-SP Ljung–Box Q — the canonical statistic for
+    cumulative deviation from a white-noise autocorrelation — is well
+    described as a log-linear function of the body's mean absolute daily
+    motion. The two fixed-regime points (FPOA and the Galactic Centre,
+    both essentially stationary at precession rate ~10⁻⁵ °/day) sit in a
+    separate regime and were excluded from the fit.
+  </p>
+  <div class="fig-wrap">
+    <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/figure_speed_vs_lb_q.png" alt="Body speed vs Ljung-Box Q diagnostic plot" loading="lazy">
+    <div class="fig-caption">
+      Mean absolute daily motion (degrees per day, log scale) versus
+      per-SP Ljung–Box Q across all thirteen reference points. Among the
+      eleven moving bodies, a log-linear regression gives Q = 67.7 −
+      86.8 · log₁₀(speed), R² = 0.929 (Pearson r = −0.964, p ≈ 2·10⁻⁶,
+      Spearman ρ = −0.973), RMSE = 23.5 LB_Q units, with a 95% CI for
+      the slope of [−105, −69]. Each decade of faster motion costs
+      ~87 units of Q. The white-noise reference thresholds (95% at
+      Q ≈ 19.7, 99.9% at Q ≈ 31.3) and a 95% prediction band around the
+      trendline are shown. The FPOA and Galactic Centre, both at
+      precession rate, sit well below the planet-trend extrapolation
+      (which would predict Q ≈ 451 at that speed) — these fixed-regime
+      points capture a different kind of signal (zodiacal anchoring)
+      than the moving bodies' speed-driven relative-geometry signal.
+    </div>
+  </div>
+  <div class="note">
+    <strong>Two-regime decomposition.</strong> The catalogue-wide signal
+    decomposes naturally into a <em>speed-dependent relative-geometry
+    component</em> (which scales at roughly 87 units of Q per decade of
+    body speed and dominates the planet results) and a <em>zodiacal-anchoring
+    component</em> (captured by the FPOA and the Galactic Centre, both
+    of which carry strong signal despite zero relative motion). Rahu, at
+    Saturn's effective speed (~0.05 °/day), lies exactly on the planet
+    trendline — it is geometrically a slow-mover by virtue of its node
+    motion, with nothing extra beyond what its speed predicts. The
+    Galactic Centre's position, by contrast, departs from the planet
+    extrapolation in exactly the way the FPOA does, suggesting both
+    serve as fixed celestial anchors whose signal comes from the
+    distribution of named-body longitudes themselves rather than from
+    relative geometry.
   </div>
 </section>
 
@@ -693,7 +746,7 @@
   <div class="section-label">Omnibus</div>
   <h2>Table 3. Catalogue-wide aggregates under both nulls</h2>
   <p>
-    Five aggregate statistics combining all 12 reference points,
+    Five aggregate statistics combining all 13 reference points,
     evaluated under both null models (5,000 Monte-Carlo iterations).
     SUM-T sums the per-SP statistic; MAX-T takes the maximum; Fisher
     combines per-SP probabilities; Stouffer combines per-SP Z-scores.
@@ -713,13 +766,13 @@
           <tr><th>Statistic</th><th class="num">obs</th><th class="num">null mean</th><th class="num">p</th><th class="num">BF</th></tr>
         </thead>
         <tbody>
-          <tr><td>K SUM-T</td><td class="num">76</td><td class="num">29.6</td><td class="num">0.024</td><td class="num"><strong>20.8</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr><td>jointΣACF² SUM-T</td><td class="num">3.48</td><td class="num">1.06</td><td class="num">0.020</td><td class="num"><strong>24.8</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr><td>jointΣACF² MAX-T</td><td class="num">0.546</td><td class="num">0.164</td><td class="num">0.018</td><td class="num"><strong>27.8</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr class="highlight"><td>LB_Q SUM-T</td><td class="num">1645</td><td class="num">508</td><td class="num">0.020</td><td class="num"><strong>24.5</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr class="highlight"><td>LB_Q MAX-T</td><td class="num">267</td><td class="num">80</td><td class="num">0.016</td><td class="num"><strong>31.2</strong> <span class="bf-band bf-vs">vs</span></td></tr>
-          <tr><td>Fisher (LB_Q)</td><td class="num" colspan="3">X²=76.4, df=24</td><td class="num">p≈3·10⁻⁷</td></tr>
-          <tr><td>Stouffer (LB_Q)</td><td class="num" colspan="3">Z=+5.51</td><td class="num">p≈2·10⁻⁸</td></tr>
+          <tr><td>K SUM-T</td><td class="num">85</td><td class="num">32.8</td><td class="num">0.022</td><td class="num"><strong>22.9</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr><td>jointΣACF² SUM-T</td><td class="num">3.94</td><td class="num">1.17</td><td class="num">0.019</td><td class="num"><strong>26.6</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr><td>jointΣACF² MAX-T</td><td class="num">0.546</td><td class="num">0.165</td><td class="num">0.018</td><td class="num"><strong>27.8</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr class="highlight"><td>LB_Q SUM-T</td><td class="num">1860</td><td class="num">561</td><td class="num">0.019</td><td class="num"><strong>26.0</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr class="highlight"><td>LB_Q MAX-T</td><td class="num">267</td><td class="num">81</td><td class="num">0.016</td><td class="num"><strong>31.2</strong> <span class="bf-band bf-vs">vs</span></td></tr>
+          <tr><td>Fisher (LB_Q)</td><td class="num" colspan="3">X²=85.2, df=26</td><td class="num">p≈10⁻⁸</td></tr>
+          <tr><td>Stouffer (LB_Q)</td><td class="num" colspan="3">Z=+5.92</td><td class="num">p≈10⁻⁹</td></tr>
         </tbody>
       </table>
     </div>
@@ -734,20 +787,20 @@
           <tr><th>Statistic</th><th class="num">obs</th><th class="num">null mean</th><th class="num">p</th><th class="num">BF</th></tr>
         </thead>
         <tbody>
-          <tr><td>K SUM-T</td><td class="num">76</td><td class="num">33.2</td><td class="num">0.040</td><td class="num"><strong>12.4</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr><td>jointΣACF² SUM-T</td><td class="num">3.48</td><td class="num">1.24</td><td class="num">0.040</td><td class="num"><strong>12.6</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr><td>jointΣACF² MAX-T</td><td class="num">0.546</td><td class="num">0.192</td><td class="num">0.036</td><td class="num"><strong>13.9</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr class="highlight"><td>LB_Q SUM-T</td><td class="num">1645</td><td class="num">591</td><td class="num">0.040</td><td class="num"><strong>12.4</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr class="highlight"><td>LB_Q MAX-T</td><td class="num">267</td><td class="num">93</td><td class="num">0.034</td><td class="num"><strong>14.6</strong> <span class="bf-band bf-s">str</span></td></tr>
-          <tr><td>Fisher (LB_Q)</td><td class="num" colspan="3">X²=62.6, df=24</td><td class="num">p≈3·10⁻⁵</td></tr>
-          <tr><td>Stouffer (LB_Q)</td><td class="num" colspan="3">Z=+4.59</td><td class="num">p≈2·10⁻⁶</td></tr>
+          <tr><td>K SUM-T</td><td class="num">85</td><td class="num">36.8</td><td class="num">0.039</td><td class="num"><strong>12.7</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr><td>jointΣACF² SUM-T</td><td class="num">3.94</td><td class="num">1.37</td><td class="num">0.037</td><td class="num"><strong>13.4</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr><td>jointΣACF² MAX-T</td><td class="num">0.546</td><td class="num">0.193</td><td class="num">0.036</td><td class="num"><strong>13.8</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr class="highlight"><td>LB_Q SUM-T</td><td class="num">1860</td><td class="num">655</td><td class="num">0.039</td><td class="num"><strong>13.0</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr class="highlight"><td>LB_Q MAX-T</td><td class="num">267</td><td class="num">93</td><td class="num">0.034</td><td class="num"><strong>14.5</strong> <span class="bf-band bf-s">str</span></td></tr>
+          <tr><td>Fisher (LB_Q)</td><td class="num" colspan="3">X²=70.1, df=26</td><td class="num">p≈6·10⁻⁶</td></tr>
+          <tr><td>Stouffer (LB_Q)</td><td class="num" colspan="3">Z=+4.99</td><td class="num">p≈3·10⁻⁷</td></tr>
         </tbody>
       </table>
     </div>
   </div>
   <div class="note">
     <strong>Adding Rahu strengthens but does not transform the omnibus.</strong>
-    The joint Σ ACF² SUM-T rose from 3.09 (11 SPs) to 3.48 (12 SPs)
+    The joint Σ ACF² SUM-T rose from 3.09 (11 SPs) to 3.48 (13 SPs)
     with the null mean rising proportionately; the p-values and Bayes
     factors are comparable to the eleven-SP results. Rahu contributes
     its share without disrupting the omnibus signal. The headline
@@ -762,9 +815,9 @@
   <p>
     The Rayleigh V-test evaluates concentration around a specified
     direction. Computing it at every integer degree from 0° to 359°
-    for each of the twelve reference points produces a "landscape"
+    for each of the thirteen reference points produces a "landscape"
     of directional preference. The polar plots below show the
-    omnibus T = Σ d² combined across all twelve SPs, with the
+    omnibus T = Σ d² combined across all thirteen SPs, with the
     observed curve in colour and the Monte-Carlo null envelope in
     grey.
   </p>
@@ -774,7 +827,7 @@
       <div class="fig-wrap" style="padding: 0; border: none; background: transparent;">
         <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/cmp_vtest_polar_plot.png" alt="V-test compound null polar plot" loading="lazy">
         <div class="fig-caption">
-          Twelve-SP V-test omnibus landscape against the compound null.
+          Thirteen-SP V-test omnibus landscape against the compound null.
           The observed curve extends well beyond the null envelope at
           directions clustered around 0°/180° (conjunction-opposition
           axis) for the slow-mover cluster, and around 60°/120° for
@@ -792,11 +845,14 @@
       <div class="fig-wrap" style="padding: 0; border: none; background: transparent;">
         <img src="https://raw.githubusercontent.com/renayo/minor_planets_2026/main/mba_vtest_polar_plot.png" alt="V-test unnamed-MBA null polar plot" loading="lazy">
         <div class="fig-caption">
-          Same analysis against the unnamed-MBA null. The observed curve
-          stays above the null envelope across most of the circle, with
-          tightest separation at the conjunction-opposition axis. The
-          stricter null compresses the envelope, so the contrast is
-          smaller in absolute terms but preserves the directional pattern.
+          Same analysis against the unnamed-MBA null over 13 SPs.
+          The observed curve stays above the null envelope across most
+          of the circle, with tightest separation at the
+          conjunction-opposition axis. BF reaches roughly 38 at the
+          omnibus level (versus the BF=30 "very strong" threshold).
+          The stricter null compresses the envelope, so the contrast
+          is smaller in absolute terms but preserves the directional
+          pattern.
         </div>
       </div>
     </div>
@@ -866,7 +922,7 @@
     "strong" range of the Jeffreys scale under both null models. The
     most plausible reading is that the data show <strong>structured
     catalogue-wide correlation between minor planet article counts and
-    the angular geometry between minor planets and twelve reference
+    the angular geometry between minor planets and thirteen reference
     points</strong>.
   </p>
   <p>
@@ -881,9 +937,9 @@
     orbital periods. The data do not adjudicate between these.
   </p>
   <p>
-    <strong>The Rahu result is worth flagging separately.</strong> Rahu
-    is the mean north lunar node — a mathematical point with no physical
-    body. It is central to Vedic astrology and effectively absent from
+    <strong>Two non-traditional reference points are worth flagging
+    separately.</strong> Rahu is the mean north lunar node — a
+    mathematical point with no physical body. It is central to Vedic astrology and effectively absent from
     Western academic discussions of these kinds of analyses. In this
     study Rahu's autocorrelation profile is statistically
     indistinguishable from the slow-moving named outer planets, with
@@ -893,7 +949,14 @@
     with no physical body behaves like a slow-moving named body
     suggests that the catalogue-wide signal is fundamentally about
     angular geometry in the tropical zodiac, not about the body whose
-    name happens to be attached to the reference point.
+    name happens to be attached to the reference point. The Galactic
+    Centre at ~27° Sagittarius — also a non-body reference, fixed in
+    tropical longitude at the precession rate — produces a similar
+    result: nine of eleven aspect lags significant, joint Σ ACF² = 0.465,
+    LB_Q = 214, BF = 41.7 (compound) and 15.8 (unnamed-MBA). The
+    Galactic Centre and FPOA together establish that the
+    zodiacal-anchoring component of the catalogue signal is real and
+    independently detectable at multiple fixed celestial positions.
   </p>
 </section>
 
@@ -924,6 +987,7 @@
     <a href="https://github.com/renayo/minor_planets_2026/blob/main/effet_size_plot.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>effet_size_plot.py</a>
     <a href="https://github.com/renayo/minor_planets_2026/blob/main/heatmap_acf_normalized_by_joint.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>heatmap_acf_normalized_by_joint.py</a>
     <a href="https://github.com/renayo/minor_planets_2026/blob/main/make_rahu_to_sun.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>make_rahu_to_sun.py</a>
+    <a href="https://github.com/renayo/minor_planets_2026/blob/main/make_gc_to_sun.py" target="_blank" class="file-item"><span class="file-icon py">▶</span>make_gc_to_sun.py</a>
   </div>
   <h3>Data files</h3>
   <div class="file-grid">
@@ -943,7 +1007,7 @@
 </main>
 
 <script>
-// ─── DATA: twelve reference points with full per-SP results ──────────────────
+// ─── DATA: thirteen reference points with full per-SP results ──────────────────
 const SP_DATA = {
   fpoa: {
     name: 'FPOA', meta: 'First Point of Aries — vernal equinox / 0° Aries tropical', symbol: '0°',
@@ -1028,12 +1092,19 @@ const SP_DATA = {
     p_cmp: 0.0260, p_mba: 0.0518,
     acf: [0.279, 0.292, 0.263, 0.201, 0.170, 0.112, 0.125, 0.030, -0.058, -0.136, -0.184],
     color: '#c39bd3', group: 'node'
+  },
+  gc: {
+    name: 'GalCenter', meta: 'Galactic Centre (Sagittarius A*) — fixed at ~267° tropical (~27° Sagittarius)', symbol: 'GC',
+    K: 9, joint: 0.465, lbq: 214.3, bf_cmp: 41.7, bf_mba: 15.8, d_cmp: 3.96, d_mba: 2.79,
+    p_cmp: 0.0120, p_mba: 0.0316,
+    acf: [0.268, 0.363, 0.228, 0.219, 0.131, 0.088, 0.151, 0.121, -0.014, -0.157, -0.272],
+    color: '#0f5f3f', group: 'galactic'
   }
 };
 
 const ASPECT_LAGS = [24, 30, 36, 40, 45, 51, 60, 72, 90, 120, 180];
 const ASPECT_NAMES = ['quindecile', 'semi-sextile', 'decile', 'novile', 'semi-square', 'septile', 'sextile', 'quintile', 'square', 'trine', 'opposition'];
-const PLANET_ORDER = ['fpoa','sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto','rahu'];
+const PLANET_ORDER = ['fpoa','sun','moon','mercury','venus','mars','jupiter','saturn','uranus','neptune','pluto','rahu','gc'];
 
 // ─── PLANET GRID ──────────────────────────────────────────────────────────────
 function buildPlanetGrid() {
@@ -1041,7 +1112,7 @@ function buildPlanetGrid() {
   PLANET_ORDER.forEach(key => {
     const sp = SP_DATA[key];
     const btn = document.createElement('div');
-    btn.className = 'planet-btn' + (key === 'rahu' ? ' rahu' : '');
+    btn.className = 'planet-btn' + (key === 'rahu' ? ' rahu' : key === 'gc' ? ' gc' : '');
     btn.dataset.key = key;
     btn.innerHTML = `<span class="symbol">${sp.symbol}</span>${sp.name}`;
     btn.onclick = () => selectPlanet(key);
@@ -1149,6 +1220,7 @@ function buildTable1() {
   sorted.forEach(sp => {
     const tr = document.createElement('tr');
     if (sp.key === 'rahu') tr.className = 'row-rahu';
+    else if (sp.key === 'gc') tr.className = 'row-gc';
     const bfBand = bf => {
       if (bf >= 30) return 'bf-vs';
       if (bf >= 10) return 'bf-s';
@@ -1178,6 +1250,7 @@ function buildTable2() {
     const sp = SP_DATA[key];
     const tr = document.createElement('tr');
     if (key === 'rahu') tr.className = 'row-rahu';
+    else if (key === 'gc') tr.className = 'row-gc';
     let cells = `<td><strong>${sp.name}</strong></td>`;
     lagIdx.forEach(i => {
       const v = sp.acf[i];
