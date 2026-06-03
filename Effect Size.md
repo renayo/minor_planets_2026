@@ -113,17 +113,6 @@ standardized effect is negative under both nulls — its observed value lies
 *below* the null mean — which makes it a useful internal negative control: a
 reference point expected to carry no aspect structure, and it carries none.
 
-**The Rahu finding on this scale.** Rahu's standardised effect of 3.13 SDs
-under the compound null places it solidly in the "strong" band alongside
-Saturn and Uranus. Under the stricter unnamed-MBA null Rahu's d falls to 2.28,
-essentially identical to Saturn's 2.33 and slightly above Uranus's 2.15. The
-retention ratio (d_unnamed/d_compound) for Rahu is 2.28/3.13 = 0.73 —
-indistinguishable from the 0.71–0.81 range seen across the other strong-signal
-SPs. In effect-size terms, Rahu behaves like one of the slow-moving outer
-bodies, despite being a calculated mathematical point rather than a physical
-body. Its 0.05°/day retrograde motion places it geometrically alongside
-Saturn, Uranus, Neptune, and Pluto in this 290-day window.
-
 The omnibus *d* of 3.29 is lower than the largest per-point values because
 the twelve reference points are positively correlated; summing them inflates
 the null SD as well as the null mean. It is the standardized effect for the
@@ -155,15 +144,6 @@ name-specific signal is thus carried by the slow outer planets, Saturn,
 Jupiter, the Sun, Mercury, the First Point of Aries (FPOA), and Rahu — and not by
 the fast inner bodies.
 
-Rahu's place in this contrast deserves a separate note. Rahu has no physical
-body — it is a calculated geometric intersection — yet its effect against
-the unnamed-MBA null does not collapse. The 27% reduction Rahu shows
-(3.13 → 2.28) is the same proportion the named bodies show, which is
-striking: there is nothing to be named in the Rahu case, but the same
-named-vs-unnamed differential emerges. The most parsimonious reading is that
-the unnamed-MBA null cleanly removes the orbital-geometry confound but does
-not remove the FPOA-aligned, slow-mover-aligned geometric signal that
-Rahu shares with the outer planets.
 
 ### Reconciling the two scales
 
