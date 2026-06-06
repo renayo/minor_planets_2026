@@ -65,7 +65,7 @@ ASTRO_LAGS = [24, 30, 36, 40, 45, 51, 60, 72, 90, 120, 180]
 ACF_THRESHOLD = 1.96 / np.sqrt(N_WAVE)   # ≈ 0.1033, the 95% CI for n=360
 
 LABELS = [
-    "Mesarthim", "Sun", "Moon", "Mercury", "Venus",
+    "FPOA", "Sun", "Moon", "Mercury", "Venus",
     "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Rahu",
 ]
 
