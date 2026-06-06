@@ -51,10 +51,10 @@ N_WAVE = 360
 ACF_THRESHOLD = 1.96 / np.sqrt(N_WAVE)
 
 LABELS = [
-    "Mesarthim", "Sun", "Moon", "Mercury", "Venus",
+    "FPOA", "Sun", "Moon", "Mercury", "Venus",
     "Mars", "Jupiter", "Saturn", "Uranus", "Neptune", "Pluto", "Rahu",
 ]
-MESARTHIM_IDX = 0
+FPOA_IDX = 0
 
 ASTRO_LAGS = [24, 30, 36, 40, 45, 51, 60, 72, 90, 120, 180]
 ASTRO_NAMES = {
@@ -284,7 +284,7 @@ def main():
     axes_flat = axes.flatten()
     for j in range(n_sp):
         ax = axes_flat[j]
-        is_last_row = j >= 9    # Mesarthim..Pluto: rows 0,1,2,3; last row = indices 9,10
+        is_last_row = j >= 9    # FPOA..Pluto: rows 0,1,2,3; last row = indices 9,10
         draw_linear_panel(ax, acfs[j], LABELS[j], SP_COLORS[j],
                            show_xticks=(j in (9, 10) or j == 8),
                            show_legend=(j == 0))
