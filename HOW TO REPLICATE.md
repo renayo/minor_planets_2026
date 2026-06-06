@@ -25,7 +25,7 @@ the paper embeds, and the paper itself as a `.docx`.
 - `corrected_sp_series.npy` — the **twelve** reference points' daily
   longitudes in the Sun-relative encoding `(body − Sun) mod 360`; a
   `12 × 290` array consumed by every downstream script. Row order:
-  Mesarthim, Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
+  FPOA, Sun, Moon, Mercury, Venus, Mars, Jupiter, Saturn, Uranus,
   Neptune, Pluto, **Rahu** (mean north lunar node, added in this
   revision).
 - `named_planet_angles_full.npy` — daily Sun-relative angular
@@ -208,7 +208,7 @@ Regenerates the **twelve** per-reference-point figures, each a linear
 autocorrelation panel beside its polar form, with the 95% white-noise
 confidence band drawn and the aspect lags coloured by significance.
 
-**Outputs:** `acf_mesarthim.png`, `acf_sun.png`, `acf_moon.png`,
+**Outputs:** `acf_fpoa.png`, `acf_sun.png`, `acf_moon.png`,
 `acf_mercury.png`, `acf_venus.png`, `acf_mars.png`, `acf_jupiter.png`,
 `acf_saturn.png`, `acf_uranus.png`, `acf_neptune.png`, `acf_pluto.png`,
 `acf_rahu.png` — these are **Figure 5, panels (a) through (l)** in the
@@ -331,7 +331,7 @@ Rahu is the mean north lunar node — a mathematical point describing the
 intersection of the Moon's orbital plane with the ecliptic, central to
 Vedic astrology. It moves retrograde at about −19.3°/yr, so over the
 290-day study window it traverses only about fifteen degrees, joining
-the slow-moving reference cluster (Mesarthim, Saturn, Uranus, Neptune,
+the slow-moving reference cluster (FPOA, Saturn, Uranus, Neptune,
 Pluto) on geometric grounds.
 
 The longitude formula used is Meeus, *Astronomical Algorithms*, 2nd
