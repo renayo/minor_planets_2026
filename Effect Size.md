@@ -9,7 +9,7 @@
 > Pluto, FPOA) plus the mean north lunar node **Rahu**.
 > `acf_effect_size_results.csv` and `acf_effect_size_per_lag.csv` accompany it.
 
-> **Note on the FPOA reference point.** Earlier versions of this analysis
+> **Note on the FPOA reference point.** In some parts of the code, FPOA is 
 > labelled the first reference point "Mesarthim" (γ Arietis). The data
 > series in `corrected_sp_series.npy`, however, is anchored at the vernal
 > equinox (0° Aries tropical), not at the fixed star γ Arietis (which
@@ -52,7 +52,7 @@ That is precisely the pattern here.
 | Pluto         | 0.499        | 0.213     | small      |
 | Neptune       | 0.486        | 0.210     | small      |
 | Uranus        | 0.390        | 0.188     | small      |
-| **Rahu**      | 0.386        | 0.187     | small      |
+| Rahu      | 0.386        | 0.187     | small      |
 | Saturn        | 0.383        | 0.187     | small      |
 | Jupiter       | 0.317        | 0.170     | small      |
 | Sun           | 0.153        | 0.118     | small      |
@@ -92,7 +92,7 @@ lags, diluted to small in the eleven-lag RMS. Per-lag values with Fisher-z
 | FPOA            | 4.87         | 4.94     | 3.49            | 4.19     |
 | Pluto           | 4.41         | 4.61     | 3.14            | 3.86     |
 | Neptune         | 4.16         | 4.34     | 3.01            | 3.76     |
-| **Rahu**        | **3.13**     | **3.62** | **2.28**        | **3.13** |
+| Rahu        | 3.13     | 3.62 | 2.28        | 3.13 |
 | Saturn          | 3.03         | 3.50     | 2.33            | 3.09     |
 | Uranus          | 2.82         | 3.35     | 2.15            | 2.94     |
 | Jupiter         | 2.23         | 2.84     | 1.81            | 2.56     |
