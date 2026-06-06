@@ -13,7 +13,7 @@ treated as salient in astrological tradition.
 
 Twelve reference points are evaluated:
 
-1. **Mesarthim** — fixed star at γ Arietis, also serves as a proxy for the
+1. **FPOA** — 
    First Point of Aries (vernal equinox; the values used are absolute
    tropical longitudes near 0° Aries).
 2. **Sun** — solar tropical longitude.
